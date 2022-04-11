@@ -1,0 +1,35 @@
+version: '3.9'
+
+services:
+  app:
+    build:
+      context: .
+    command: >
+      sh -c "python manage.py migrate --noinput &&
+        python manage.py initadmin &&
+      python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "8000:8000"
+    links:
+      - redis
+    volumes:
+      - ./djangoProject:/app
+
+  celery:
+    build: .
+    command: celery -A djangoProject worker --loglevel=info -P solo
+    volumes:
+      - ./djangoProject:/app
+    depends_on:
+      - redis
+
+  celery-beat:
+    build: .
+    command: celery -A djangoProject beat --loglevel=info
+    volumes:
+      - ./djangoProject:/app
+    depends_on:
+      - redis
+
+  redis:
+    image: redis

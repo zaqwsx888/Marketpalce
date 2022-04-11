@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+{% load i18n %}
+{% load static %}
+<html lang="en">
+<head>
+    <title>{{category.name}}</title>
+    {% include 'include/head.html' %}
+</head>
+<body class="Site">
+{% include 'include/header.html' %}
+
+<div class="Middle Middle_top">
+    <div class="Middle-top">
+      <div class="wrap">
+        <div class="Middle-header">
+          <h1 class="Middle-title">{% trans "Оформление заказа" %}
+          </h1>
+          <ul class="breadcrumbs Middle-breadcrumbs">
+            <li class="breadcrumbs-item"><a href="{% url 'main' %}">{% trans "Главная" %}</a>
+            </li>
+            <li class="breadcrumbs-item breadcrumbs-item_current"><span>{% trans "Оформление заказа" %}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="Section Section_column Section_columnRight Section_columnWide Order">
+      <div class="wrap">
+        <div class="Section-column">
+          <div class="Section-columnSection">
+            <header class="Section-header">
+              <strong class="Section-title">{% trans "Процесс оформления" %}
+              </strong>
+            </header>
+            <div class="Section-columnContent">
+              <ul class="menu menu_vt Order-navigate">
+                <li class="menu-item_ACTIVE menu-item"><a class="menu-link" href="#">{% trans "Шаг" %} 1. {% trans "Параметры пользователя" %} </a>
+                </li>
+                <li class="menu-item"><a class="menu-link" href="#step2">{% trans "Шаг" %}  2. {% trans "Тип доставки" %}</a>
+                </li>
+                <li class="menu-item"><a class="menu-link" href="#step3">{% trans "Шаг" %}  3. {% trans "Тип платежа" %} </a>
+                </li>
+                <li class="menu-item"><a class="menu-link" href="#step4">{% trans "Шаг" %}  4. {% trans "Потдверждение заказа" %} </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="Section-content">
+          <form class="form" action="" method="post">
+            <div class="Order-block Order-block_OPEN">
+              <header class="Section-header Section-header_sm">
+                <h2 class="Section-title">{% trans "Шаг" %}  1. {% trans "Параметры пользователя" %}
+                </h2>
+              </header>
+              {%csrf_token%}
+              <div class="row">
+                {% if not request.user.is_authenticated %}
+
+                <div class="row-block">
+                  {% for field in form %}
+                  <div class="form-field">
+                      <span style="color: red">{{field.errors}}</span>
+                    {{field.label}}
+                    {{field}}
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+              <div class="row-block">
+                  <div class="form-field"><a class="btn btn_muted Order-btnReg" href="{% url 'login' %}">{% trans "Я уже зарегистрирован" %} </a>
+                  </div>
+                <div class="form-field">
+                  <input class="btn login-btn btn-order" type="submit" value="{% trans "Дальше" %}
+                         }>
+                </div>
+                </div>
+                {% else %}
+              <div class="row-block">
+              <div class="form-field">
+                    <label class="form-label" for="name">{% trans "Имя" %}
+                    </label>
+                    <input class="form-input" id="name" name="name" type="text" value="{{request.user.first_name}}"/>
+                  </div>
+              <div class="form-field">
+                    <label class="form-label" for="last_name">{% trans "Фамилия" %}
+                    </label>
+                    <input class="form-input" id="last_name" name="last_name" type="text" value="{{request.user.last_name}}"/>
+                  </div>
+              <div class="form-field">
+                    <label class="form-label" for="email">email
+                    </label>
+                    <input class="form-input" id="email" name="email" type="text" value="{{request.user.email}}" data-validate="require"/>
+                  </div>
+              <div class="form-field">
+                  <input class="btn login-btn btn-order" type="submit" value="{% trans "Дальше" %}">
+                </div>
+              </div>
+              {% endif %}
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% include 'include/footer.html' %}
+<script>
+$('#id_phone').mask('+7 (999) 999-99-99');
+</script>
+</body>
+</html>

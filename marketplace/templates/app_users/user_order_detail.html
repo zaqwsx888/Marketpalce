@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+{% load i18n %}
+{% load static %}
+<html lang="en">
+<head>
+    <title>{% trans "Номер заказа" %}{{ order.id }}</title>
+    {% include 'include/head.html' %}
+</head>
+<body class="Site">
+  {% include 'include/header.html' %}
+
+<div class="Middle Middle_top">
+    <div class="Middle-top">
+      <div class="wrap">
+        <div class="Middle-header">
+          <h1 class="Middle-title">{% trans "Заказ" %}{{ order.id }}
+          </h1>
+          <ul class="breadcrumbs Middle-breadcrumbs">
+            <li class="breadcrumbs-item"><a href="index.html">{% trans "Главная" %}</a>
+            </li>
+            <li class="breadcrumbs-item"><a href="{% url 'history_orders' slug=request.user.slug%}">{% trans "История заказов" %}</a>
+            </li>
+            <li class="breadcrumbs-item breadcrumbs-item_current"><span>{% trans "Заказ" %} №: {{ order.id }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="Section">
+      <div class="wrap">
+        <div class="Section-content">
+          <div class="Orders">
+          </div>
+          <div class="Order">
+            <div class="Order-infoBlock">
+              <div class="Order-personal">
+                <div class="row">
+                  <div class="row-block">
+                    <div class="Order-info Order-info_date">
+                      <div class="Order-infoType">{% trans "Дата заказа" %}:
+                      </div>
+                      <div class="Order-infoContent">{{ order.date_order }}
+                      </div>
+                    </div>
+                    <div class="Order-info">
+                      <div class="Order-infoType">{% trans "Инициалы" %}:
+                      </div>
+                      <div class="Order-infoContent">{{ request.user.first_name }} {{ request.user.last_name }}
+                      </div>
+                    </div>
+                    <div class="Order-info">
+                      <div class="Order-infoType">{% trans "Телефон" %}:
+                      </div>
+                      <div class="Order-infoContent">{{ request.user.phone }}
+                      </div>
+                    </div>
+                    <div class="Order-info">
+                      <div class="Order-infoType">E-mail:
+                      </div>
+                      <div class="Order-infoContent">{{ request.user.email }}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row-block">
+                    <div class="Order-info Order-info_delivery">
+                      <div class="Order-infoType">{% trans "Тип доставки" %}:
+                      </div>
+                      <div class="Order-infoContent">{{ order.delivery_for_order.get_delivery_display }}
+                      </div>
+                    </div>
+                    <div class="Order-info">
+                      <div class="Order-infoType">{% trans "Город" %}:
+                      </div>
+                      <div class="Order-infoContent">{{ order.locality }}
+                      </div>
+                    </div>
+                    <div class="Order-info">
+                      <div class="Order-infoType">{% trans "Адрес" %}:
+                      </div>
+                      <div class="Order-infoContent">{{ order.street }}, {{ order.house }} {{ order.apartment }}
+                      </div>
+                    </div>
+                    <div class="Order-info Order-info_pay">
+                      <div class="Order-infoType">{% trans "Оплата" %}:
+                      </div>
+                      <div class="Order-infoContent">{{ order.get_payment_type_display }}
+                      </div>
+                    </div>
+                    <div class="Order-info Order-info_status">
+                      <div class="Order-infoType">{% trans "Статус" %}:
+                      </div>
+                      <div class="Order-infoContent">{{ order.get_status_display }}
+                      </div>
+                    </div>
+                    <div class="Order-info Order-info_error">
+                      <div class="Order-infoType">
+                      </div>
+                      <div class="Order-infoContent">{{ order.payment_for_order }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="Cart Cart_order">
+                {% for cart_product in order.cart.products.all %}
+                  <div class="Cart-product">
+                  <div class="Cart-block Cart-block_row">
+                    <div class="Cart-block Cart-block_pict">
+                        <a class="Cart-pict" href="#">
+                            <img class="Cart-img" src="{{ cart_product.product.product.main_image.file.url }}"
+                                 alt="{{ cart_product.product.product.main_image.file.filename }}"/>
+                        </a>
+                    </div>
+                    <div class="Cart-block Cart-block_info">
+                        <a class="Cart-title" href="#">{{ cart_product.product.product.model }}</a>
+                      <div class="Cart-desc">{{ cart_product.product.product.description }}
+                      </div>
+                    </div>
+                    <div class="Cart-block Cart-block_price">
+                      <div class="Cart-price">{{ cart_product.price }} {% trans "руб" %}.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="Cart-block Cart-block_row">
+                    <div class="Cart-block Cart-block_seller">
+                      <div>{% trans "Продавец" %}:
+                      </div>
+                      <div>{{ cart_product.product.shop }}
+                      </div>
+                    </div>
+                    <div class="Cart-block Cart-block_amount">{{ cart_product.quantity }} шт.
+                    </div>
+                  </div>
+                </div>
+                  {% endfor %}
+                <div class="Cart-total">
+                  <div class="Cart-block Cart-block_total">
+                    <strong class="Cart-title">{% trans "Итого" %}:<span class="Cart-price">{{ order.cart.total_price }} {% trans "руб" %}.</span>
+                    </strong>
+                  </div>
+                  <div class="Cart-block"><a class="btn btn_primary btn_lg" href="#">{% trans "К оплате" %}</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% include 'include/footer.html' %}
+</body>
+</html>

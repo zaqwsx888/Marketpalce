@@ -1,0 +1,17 @@
+# Git
+.git
+.gitignore
+
+# Docker
+.docker
+
+# Python
+djangoProject/__pycache__/
+djangoProject/*/__pycache__/
+djangoProject/*/*/__pycache__/
+djangoProject/*/*/*/__pycache__/
+.venv/
+venv/
+
+# Local PostgreSQL data
+db/

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+{% load i18n %}
+{% load static %}
+<html lang="en">
+<head>
+    <title>{{category.name}}</title>
+    {% include 'include/head.html' %}
+</head>
+<body class="Site">
+{% include 'include/header.html' %}
+<div class="Middle Middle_top">
+    <div class="Middle-top">
+      <div class="wrap">
+        <div class="Middle-header">
+          <h1 class="Middle-title">{% trans "Оформление заказа" %}
+          </h1>
+          <ul class="breadcrumbs Middle-breadcrumbs">
+            <li class="breadcrumbs-item"><a href="index.html">{% trans "Главная" %}</a>
+            </li>
+            <li class="breadcrumbs-item breadcrumbs-item_current"><span>{% trans "Оформление заказа" %}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="Section Section_column Section_columnRight Section_columnWide Order">
+      <div class="wrap">
+        <div class="Section-column">
+          <div class="Section-columnSection">
+            <header class="Section-header">
+              <strong class="Section-title">{% trans "Процесс оформления" %}
+              </strong>
+            </header>
+            <div class="Section-columnContent">
+              <ul class="menu menu_vt Order-navigate">
+                <li class="link-order-user">
+                  <a href="{%url 'user_order'%}">{% trans "Шаг" %} 1. {% trans "Данные пользователя" %}</a>
+                </li>
+                <li class="link-order-user"><a href="{% url 'create_order_delivery'%}">{% trans "Шаг" %} 2. {% trans "Тип доставки" %}</a>
+                </li>
+                <li class="menu-item_ACTIVE"><a class="menu-link" href="#step3">{% trans "Шаг" %} 3. {% trans "Тип платежа" %}</a>
+                </li>
+                <li class="menu-item"><a class="menu-link" href="#step4">{% trans "Шаг" %} 4. {% trans "Потдверждение заказа" %}</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="Section-content">
+            <div class="Order-block Order-block_OPEN">
+              <header class="Section-header Section-header_sm">
+                <h2 class="Section-title">{% trans "Шаг" %} 4. {% trans "Потдверждение заказа" %}
+                </h2>
+              </header>
+              <!--+div.Order.-confirmation-->
+              <div class="Order-infoBlock">
+                <div class="Order-personal">
+                  <div class="row">
+                    <div class="row-block">
+                      <div class="Order-info">
+                        <div class="Order-infoType">{% trans "Имя" %}:
+                        </div>
+                        <div class="Order-infoContent">{{request.user.first_name}}
+                        </div>
+                      </div>
+                        <div class="Order-info">
+                        <div class="Order-infoType">{% trans "Фамилия" %}:
+                        </div>
+                        <div class="Order-infoContent">{{request.user.last_name}}
+                        </div>
+                      </div>
+                      <div class="Order-info">
+                        <div class="Order-infoType">{% trans "Телефон" %}:
+                        </div>
+                        <div class="Order-infoContent">{{request.user.phone}}
+                        </div>
+                      </div>
+                      <div class="Order-info">
+                        <div class="Order-infoType">E-mail:
+                        </div>
+                        <div class="Order-infoContent">{{request.user.email}}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row-block">
+                      <div class="Order-info Order-info_delivery">
+                        <div class="Order-infoType">{% trans "Тип доставки" %}:
+                        </div>
+                        <div class="Order-infoContent">{{order.delivery_for_order}}
+                        </div>
+                      </div>
+                      <div class="Order-info">
+                        <div class="Order-infoType">{% trans "Город" %}:
+                        </div>
+                        <div class="Order-infoContent">{{order.locality}}
+                        </div>
+                      </div>
+                      <div class="Order-info">
+                        <div class="Order-infoType">{% trans "Адрес" %}:
+                        </div>
+                        <div class="Order-infoContent">{{order.street}}, {% trans "дом" %}. {{order.house}}, {% trans "квартира" %}. {{order.apartment}}
+                            {% if order.entrance %}
+                            , {% trans "подъезд" %} {{order.entrance}}
+                            {% endif %}
+                            {% if order.floor %}
+                            , {% trans "этаж" %} {{order.floor}}
+                            {% endif %}
+                        </div>
+                      </div>
+                      <div class="Order-info Order-info_pay">
+                        <div class="Order-infoType">{% trans "Тип оплаты" %}:
+                        </div>
+                        <div class="Order-infoContent">{{order.get_payment_type_display}}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="Cart Cart_order">
+                    {% for product in product_list.all %}
+                  <div class="Cart-product">
+                    <div class="Cart-block Cart-block_row">
+                      <div class="Cart-block Cart-block_pict">
+                          <a class="Cart-pict" href="{% url 'good_details' slug=product.product.product.slug %}">
+                            <img class="Cart-img" src="{{product.product.product.main_image.file.url}}" alt="card.jpg"/>
+                          </a>
+                      </div>
+                      <div class="Cart-block Cart-block_info">
+                        <a class="Cart-title" href="{% url 'good_details' slug=product.product.product.slug %}">
+                          {{product.product}}
+                        </a>
+                        <div class="Cart-desc">{{product.product.product.description}}
+                        </div>
+                      </div>
+                      <div class="Cart-block Cart-block_price">
+                        {% if product.price == product.product.price %}
+                        <div class="Cart-price">
+                          {{product.price}}
+                        </div>
+                        {% else %}
+                        <div class="Cart-price_old">
+                          {{product.product.price}}
+                        </div>
+                        <div class="Cart-price">
+                          {{product.price}}
+                        </div>
+                        {% endif %}
+                      </div>
+                    </div>
+                    <div class="Cart-block Cart-block_row">
+                      <div class="Cart-block Cart-block_seller">
+                        <div>{% trans "Продавец" %}:
+                        </div>
+                        <div>{{product.product.shop}}
+                        </div>
+                      </div>
+                      <div class="Cart-block Cart-block_amount">{{product.quantity}} {% trans "шт." %}.
+                      </div>
+                    </div>
+                  </div>
+                    {% endfor %}
+                  <div class="Cart-total">
+                    <div class="Cart-block Cart-block_total">
+                      <strong class="Cart-title">{% trans "Итого" %}:
+                      </strong><span class="Cart-price">{{order.order_total_price}}</span><span class="Cart-price_old">{{old_total_cost}}</span>
+                    </div>
+                    <div class="Cart-block">
+                        <a class="btn btn_primary btn_lg" href="{% url 'create_payment' %}">{% trans "Оплатить" %}</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% include 'include/footer.html' %}
+</body>
+</html>

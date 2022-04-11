@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block content %}
+
+
+<div class="Middle Middle_top">
+
+    <div class="Middle-top">
+        <div class="wrap">
+            <div class="Middle-header">
+                <h1 class="Middle-title">{% trans "Контакты" %}</h1>
+                <ul class="breadcrumbs Middle-breadcrumbs">
+                    <li class="breadcrumbs-item"><a href="{% url 'main' %}">{% trans "Главная" %}</a></li>
+                    <li class="breadcrumbs-item breadcrumbs-item_current"><span>{% trans "Контакты" %}</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="Section Section_column Section_columnLeft Section_columnWide">
+        <div class="wrap">
+            <div class="Section-column">
+                <div class="Section-columnSection Section-columnSection_mark">
+                    <div class="media media_advantage">
+                        <div class="media-image"><img src="{%  static 'img/icons/advantages/shipping.svg' %}" alt="shipping.svg"/></div>
+                        <div class="media-content">
+                            <strong class="media-title">{% trans "Доставка и возврат" %}</strong>
+                            <p class="media-text">{% trans "Доставка по всему миру" %}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="Section-columnSection Section-columnSection_mark">
+                    <div class="media media_advantage">
+                        <div class="media-image"><img src="{% static 'img/icons/advantages/moneyBack.svg' %}" alt="moneyBack.svg"/></div>
+                        <div class="media-content">
+                            <strong class="media-title">{% trans "Возврат денег" %}</strong>
+                            <p class="media-text">{% trans "Гарантия платежей" %}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="Section-columnSection Section-columnSection_mark">
+                    <div class="media media_advantage">
+                        <div class="media-image"><img src="{% static 'img/icons/advantages/support.svg' %}" alt="support.svg"/></div>
+                        <div class="media-content">
+                            <strong class="media-title">{% trans "Политика тех. поддержки" %}</strong>
+                            <p class="media-text">{% trans "Быстрая тех. поддержка" %}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="Section-columnSection Section-columnSection_mark">
+                    <div class="media media_advantage">
+                        <div class="media-image"><img src="{% static 'img/icons/advantages/quality.svg' %}" alt="quality.svg"/></div>
+                        <div class="media-content">
+                            <strong class="media-title">{% trans "Гарантия качества" %}</strong>
+                            <p class="media-text">{% trans "Лучшие товары" %}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="Section-columnSection Section-columnSection_mark">
+                    <div class="media media_middle">
+                        <div class="media-image"><img src="{% static 'img/icons/contacts/phone.svg' %}" alt="phone.svg"/></div>
+                        <div class="media-content">{% trans "Телефон" %}:&#32;
+                            <nobr>8 800 000 000</nobr>
+                        </div>
+                    </div>
+                </div>
+                <div class="Section-columnSection Section-columnSection_mark">
+                    <div class="media media_middle">
+                        <div class="media-image"><img src="{% static 'img/icons/contacts/address.svg' %}" alt="address.svg"/></div>
+                        <div class="media-content">{% trans "Москва, Россия" %}</div>
+                    </div>
+                </div>
+                <div class="Section-columnSection Section-columnSection_mark">
+                    <div class="media media_middle">
+                        <div class="media-image"><img src="{% static 'img/icons/contacts/mail.svg' %}" alt="mail.svg"/></div>
+                        <div class="media-content">example@example.com</div>
+                    </div>
+                </div>
+                <div class="Section-columnSection">
+                    <header class="Section-header">
+                        <strong class="Section-title">{% trans "Подписывайтесь" %}</strong>
+                    </header>
+                    <div class="Section-columnContent">
+                        <div class="Footer-payments Footer-payments_column">
+                            <div><img src="{% static 'img/icons/socialContent/fb.png' %}" alt="fb.png"/></div>
+                            <div><img src="{% static 'img/icons/socialContent/tw.png' %}" alt="tw.png"/></div>
+                            <div><img src="{% static 'img/icons/socialContent/gg.png' %}" alt="gg.png"/></div>
+                            <div><img src="{% static 'img/icons/socialContent/in.png' %}" alt="in.png"/></div>
+                            <div><img src="{% static 'img/icons/socialContent/pt.png' %}" alt="pt.png"/></div>
+                            <div><img src="{% static 'img/icons/socialContent/ml.png' %}" alt="ml.png"/></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="Section-content">
+                <div class="row row_verticalCenter row_maxHalf">
+                    <div class="row-block">
+                    <div style="margin: 0 0 0 50px">
+                        <h2>{% trans "Megano marketplace" %}</h2>
+                        <p>{% trans "Агрегатор электроники федеральных сетей" %}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

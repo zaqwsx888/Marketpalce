@@ -1,0 +1,166 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block content %}
+
+
+<div class="Middle Middle_top">
+
+    <div class="Middle-top">
+        <div class="wrap">
+            <div class="Middle-header">
+                <h1 class="Middle-title">{% trans "О" %} {{ shop.name }}</h1>
+                <ul class="breadcrumbs Middle-breadcrumbs">
+                    <li class="breadcrumbs-item"><a href="{% url 'main' %}">{% trans "Главная" %}</a></li>
+                    <li class="breadcrumbs-item breadcrumbs-item_current"><span>{% trans "О" %}{{ shop.name }}</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="Section Section_column Section_columnLeft Section_columnWide">
+        <div class="wrap">
+            <div class="Section-column">
+                <div class="Section-columnSection Section-columnSection_mark">
+                    <div class="media media_advantage">
+                        <div class="media-image"><img src="{%  static 'img/icons/advantages/shipping.svg' %}" alt="shipping.svg"/></div>
+                        <div class="media-content">
+                            <strong class="media-title">{% trans "Доставка и возврат" %}</strong>
+                            <p class="media-text">{% trans "Доставка по всему миру" %}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="Section-columnSection Section-columnSection_mark">
+                    <div class="media media_advantage">
+                        <div class="media-image"><img src="{% static 'img/icons/advantages/moneyBack.svg' %}" alt="moneyBack.svg"/></div>
+                        <div class="media-content">
+                            <strong class="media-title">{% trans "Возврат денег" %}</strong>
+                            <p class="media-text">{% trans "Гарантия платежей" %}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="Section-columnSection Section-columnSection_mark">
+                    <div class="media media_advantage">
+                        <div class="media-image"><img src="{% static 'img/icons/advantages/support.svg' %}" alt="support.svg"/></div>
+                        <div class="media-content">
+                            <strong class="media-title">{% trans "Политика тех. поддержки" %}</strong>
+                            <p class="media-text">{% trans "Быстрая тех. поддержка" %}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="Section-columnSection Section-columnSection_mark">
+                    <div class="media media_advantage">
+                        <div class="media-image"><img src="{% static 'img/icons/advantages/quality.svg' %}" alt="quality.svg"/></div>
+                        <div class="media-content">
+                            <strong class="media-title">{% trans "Гарантия качества" %}</strong>
+                            <p class="media-text">{% trans "Лучшие товары" %}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="Section-columnSection Section-columnSection_mark">
+                    <div class="media media_middle">
+                        <div class="media-image"><img src="{% static 'img/icons/contacts/phone.svg' %}" alt="phone.svg"/></div>
+                        <div class="media-content">{% trans "Телефон" %}:&#32;
+                            <nobr>{{ shop.phone }}</nobr>
+                        </div>
+                    </div>
+                </div>
+                <div class="Section-columnSection Section-columnSection_mark">
+                    <div class="media media_middle">
+                        <div class="media-image"><img src="{% static 'img/icons/contacts/address.svg' %}" alt="address.svg"/></div>
+                        <div class="media-content">{{ shop.address.all|join:", " }}</div>
+                    </div>
+                </div>
+                <div class="Section-columnSection Section-columnSection_mark">
+                    <div class="media media_middle">
+                        <div class="media-image"><img src="{% static 'img/icons/contacts/mail.svg' %}" alt="mail.svg"/></div>
+                        <div class="media-content">{{ shop.email }}</div>
+                    </div>
+                </div>
+                <div class="Section-columnSection">
+                    <header class="Section-header">
+                        <strong class="Section-title">{% trans "Подписывайтесь" %}</strong>
+                    </header>
+                    <div class="Section-columnContent">
+                        <div class="Footer-payments Footer-payments_column">
+                            <div><img src="{% static 'img/icons/socialContent/fb.png' %}" alt="fb.png"/></div>
+                            <div><img src="{% static 'img/icons/socialContent/tw.png' %}" alt="tw.png"/></div>
+                            <div><img src="{% static 'img/icons/socialContent/gg.png' %}" alt="gg.png"/></div>
+                            <div><img src="{% static 'img/icons/socialContent/in.png' %}" alt="in.png"/></div>
+                            <div><img src="{% static 'img/icons/socialContent/pt.png' %}" alt="pt.png"/></div>
+                            <div><img src="{% static 'img/icons/socialContent/ml.png' %}" alt="ml.png"/></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="Section-content">
+                <div class="row row_verticalCenter row_maxHalf">
+                    <div class="row-block">
+                        <div class="pict"><img src="{% url 'main' %}media/{{ MEDIA_URL }}{{shop.image}}" alt="bigGoods.png"/></div>
+                    </div>
+                    <div style="margin: 0 0 0 50px">
+                        <h2>{{ shop.name }}</h2>
+                        <p>{{ shop.description }}</p>
+                    </div>
+                </div>
+                <header class="Section-header">
+                    <h2 class="Section-title">{% trans "Популярные товары" %}</h2>
+                </header>
+                <div class="Cards">
+
+                    {% for product, discount in shop_products %}
+
+                        <div class="Card">
+                            <a class="Card-picture" href="{% url 'good_details' product.product.slug %}"><img src="{{ product.product.main_image.file.url }}" alt="{{ product.product.main_image.filename }}"/></a>
+
+                            <div class="Card-content">
+                                <strong class="Card-title"><a href="{% url 'good_details' product.product.slug %}">{{ product.product.model }}</a></strong>
+
+                                <div class="Card-description">
+                                    {% if not discount.0 %}
+                                        <div class="Card-cost">
+                                            <span class="Card-price">₽&#32;{{ product.price }}</span>
+                                        </div>
+                                    {% else %}
+                                        <div class="Card-cost">
+                                            <span class="Card-priceOld">₽&#32;{{ product.price }}</span>
+                                            <hr>
+                                            <span class="Card-price">₽&#32;{{ discount.0 }}</span>
+                                        </div>
+                                    {% endif %}
+
+                                    <div class="Card-category">{{ product.product.category.name }}</div>
+
+                                        <div class="Card-hover">
+                                            <a class="Card-btn" href="{% url 'good_details' product.product.slug %}">
+                                                <img src="{% static 'img/icons/card/bookmark.svg' %}" alt="bookmark.svg"/>
+                                            </a>
+
+                                            <button class="Card-btn add_product_to_cart" shop_product_id="{{ product.pk }}">
+                                              <img src="{% static 'img/icons/card/cart.svg' %}" alt="cart.svg"/>
+                                            </button>
+
+                                            <form class="Card-btn" method="post">
+                                                {% csrf_token %}
+                                                <button class="Card-btn" name="compare" value="{{ product.pk }}">
+                                                    <img src="{% static 'img/icons/card/change.svg' %}" alt="change.svg"/>
+                                                </button>
+                                            </form>
+
+                                        </div>
+                                </div>
+                            </div>
+                            {% if discount.1.percent_discount %}
+                                <div class="Card-sale">- {{ discount.1.percent_discount|floatformat:"0" }} %</div>
+                            {% elif discount.1.value_discount %}
+                                <div class="Card-sale">-{{ discount.1.value_discount|floatformat:"0" }}</div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% load i18n %}
+{% load static %}
+{% include 'include/head.html' %}
+
+<body class="Site">
+{% include 'include/header.html' %}
+
+{% block content %}
+{% endblock %}
+{% include 'include/footer.html' %}
+
+</body>
+
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+<script>
+    $('.primary_product_add_to_cart').on('click', function (){
+        let primary_product_shop_id = $(this).attr('primary_product_shop_id')
+        let amount = $('#amount').val()
+        let data = {
+            primary_product_shop_id: primary_product_shop_id,
+            amount: amount
+        }
+        $.ajax({
+            method: "GET",
+            dataType: "json",
+            data: data,
+            url: '{% url "add_cart_product" %}',
+            success: function (data){
+                let result = data['data']
+                console.log(result)
+                $("#number_of_goods").text(result.number_of_goods)
+                $("#message_1").text(result.message_1)
+            }
+        })
+    })
+</script>
+
+<script>
+    $('.add_product_to_cart').on('click', function (){
+        let shop_product_id = $(this).attr('shop_product_id')
+        let data = {
+            shop_product_id: shop_product_id,
+        }
+        $.ajax({
+            method: "GET",
+            dataType: "json",
+            data: data,
+            url: '{% url "add_cart_product" %}',
+            success: function (data){
+                let result = data['data']
+                console.log(result)
+                $("#number_of_goods").text(result.number_of_goods)
+                $("#message_2").text(result.message_2)
+            }
+        })
+    })
+</script>
+
+<script>
+    $('#checkbox_check').on('click', function(){
+        let data
+
+        if ($(this).is(':checked')){
+            data = {'different': true}
+        } else {
+            data = {'different': false}
+        }
+
+        $.ajax({
+                method: "GET",
+                dataType: "json",
+                data: data,
+                url: '{% url "compare" %}',
+                success: function(data){
+                    $('#diff_parameters').replaceWith($(data.html));
+                }
+            })
+    })
+</script>
+
+</html>

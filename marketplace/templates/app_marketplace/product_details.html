@@ -1,0 +1,204 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block content %}
+
+<div class="Middle Middle_top">
+    <div class="Middle-top">
+        <div class="wrap">
+            <div class="Middle-header">
+                <h1 class="Middle-title">{{ title }}</h1>
+                <ul class="breadcrumbs Middle-breadcrumbs">
+                    <li class="breadcrumbs-item"><a href="{% url 'main' %}">{% trans "Главная" %}</a></li>
+                    <li class="breadcrumbs-item breadcrumbs-item_current"><span>{% trans "Товар" %}</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="Section">
+        <div class="wrap">
+            <div class="Product">
+                <div class="ProductCard">
+                    <div class="ProductCard-look">
+                        <div class="ProductCard-photo">
+                            {% if min_price.0.1.percent_discount %}
+                                <div class="ProductCard-sale">-{{ min_price.0.1.percent_discount|floatformat:"0" }} %</div>
+                            {% elif min_price.0.1.value_discount %}
+                                <div class="ProductCard-sale">-{{ min_price.0.1.value_discount|floatformat:"0" }}</div>
+                            {% endif %}
+                            <img src="{{ product.main_image.file.url }}" alt="{{ product.main_image.filename }}"/>
+                        </div>
+                        <div class="ProductCard-picts">
+                            <a class="ProductCard-pict ProductCard-pict_ACTIVE" href="{{ product.main_image.file.url }}">
+                                <img src="{{ product.main_image.file.url }}" alt="{{ product.main_image.filename }}"/>
+                            </a>
+                            {% with product.gallery.all as gallery %}
+                                {% if gallery %}
+                                    {% for img in gallery %}
+                                        <a class="ProductCard-pict" href="{{ img.file.url }}">
+                                            <img src="{{ img.file.url }}" alt="{{ img.filename }}"/></a>
+                                    {% endfor %}
+                                {% endif %}
+                            {% endwith %}
+                        </div>
+                    </div>
+                    <div class="ProductCard-desc">
+                        <div class="ProductCard-header">
+                            <h2 class="ProductCard-title">{{ product.model }}</h2>
+                            <div class="ProductCard-info">
+                                <div class="ProductCard-cost">
+                                    <div class="ProductCard-price">₽&#32; {{ min_price.0.0 }}</div>
+                                    {% if min_price.0.1 %}
+                                        <div class="ProductCard-priceOld">₽&#32; {{ min_price.1.price }}</div>
+                                    {% endif %}
+                                </div>
+                                <div class="ProductCard-compare">
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        <button class="btn btn_default" name="compare" value="{{ min_price.1.pk }}">
+                                            <img class="btn-icon" src="{% static 'img/icons/card/change.svg' %}" alt="change.svg"/>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ProductCard-text">
+                            {{ product.description }}
+                        </div>
+                        {% if product_on_shops %}
+                            <div class="ProductCard-cart">
+                                <div class="ProductCard-cartElement ProductCard-cartElement_amount">
+                                    <div class="Amount Amount_product">
+                                        <button class="Amount-remove" type="button"></button>
+                                        <input class="Amount-input form-input" id="amount" type="text" value="1"/>
+                                        <button class="Amount-add" type="button"></button>
+                                    </div>
+                                </div>
+                                <div class="ProductCard-cartElement">
+                                    <button class="btn btn_primary" name="cart" value="{{ product }}">
+                                        <img class="btn-icon" src="{% static 'img/icons/card/cart_white.svg' %}" alt="cart_white.svg"/>
+                                        <span class="btn-content primary_product_add_to_cart" primary_product_shop_id="{{ min_price.1.id }}">{% trans "В корзину" %}</span>
+                                    </button>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="ProductCard-cart">
+                                <strong style="color: #df3349">{% trans "Товар не доступен" %}</strong>
+                            </div>
+                        {% endif %}
+                        <div class="ProductCard-footer">
+                            <label style="color: red; margin: 1em 0 0 0;" id="message_1"></label>
+                            {% if tags %}
+                                <div class="ProductCard-tags">
+                                    <strong class="ProductCard-tagsTitle">{% trans "Теги" %}:</strong>
+                                    {% for tag in tags %}
+                                    <a href="#">{{ tag }}</a>,
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="Tabs Tabs_default">
+                    <div class="Tabs-links">
+                        <a class="Tabs-link_ACTIVE Tabs-link" href="#description"><span>{% trans "Характеристики" %}</span></a>
+                        {% if product_on_shops %}
+                            <a class="Tabs-link" href="#sellers"><span>{% trans "Продавцы" %}</span></a>
+                        {% endif %}
+                        <a class="Tabs-link" href="#reviews"><span>{% trans "Отзывы" %} ({{ count_comments }})</span></a>
+                    </div>
+                    <div class="Tabs-wrap">
+                        <div class="Tabs-block" id="description">
+                            <img class="pict pict_right" src="{{ product.main_image.file.url }}" alt="{{ product.main_image.filename }}"/>
+                            <ul>
+                                {% for characteristic in product.characteristics.all %}
+                                    <li>{{ characteristic.name }}: {{ characteristic.value }}</li>
+                                {% endfor %}
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="Tabs-block" id="sellers">
+                            <div class="Categories Categories_product">
+                                <label style="color: red; margin: 1em 0 0 0;" id="message_2"></label>
+                                {% for price, product in product_on_shops %}
+                                    <div class="Categories-row">
+                                        <div class="Categories-block Categories-block_info">
+                                            <div class="Categories-info"><a href="{% url 'shop' product.shop.slug %}">{{ product.shop.name }}</a></div>
+                                        </div>
+                                        <div class="Categories-splitProps"></div>
+                                        <div class="Categories-block Categories-price"><strong>₽&#32;{{ price.0 }}</strong></div>
+                                        <div class="Categories-block Categories-button">
+                                            <a class="btn btn_primary" href="#"><img class="btn-icon" src="{% static 'img/icons/card/cart_white.svg' %}" alt="cart_white.svg"/>
+                                                <span class="btn-content add_product_to_cart" shop_product_id="{{ product.id }}">{% trans "Купить" %}</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="Tabs-block" id="reviews">
+                            <header class="Section-header">
+                                <h3 class="Section-title">{% trans "Кол-во отзывов" %}: {{ count_comments }}
+                                </h3>
+                            </header>
+                            <div class="Comments">
+                                {% for comment in comments %}
+                                    <div class="Comment">
+                                        <div class="Comment-column Comment-column_pict">
+                                            <div class="Comment-avatar">
+                                            </div>
+                                        </div>
+                                        <div class="Comment-column">
+                                            <header class="Comment-header">
+                                                <div>
+                                                    <strong class="Comment-title">
+                                                        {{ comment.user.first_name }} {{ comment.user.last_name }}
+                                                    </strong>
+                                                    <span class="Comment-date">
+                                                        {{comment.add_datetime|date:"F d"}}&#32;&#32;/&#32;&#32;{{comment.add_datetime|date:"Y"}}&#32;&#32;/&#32;&#32;{{comment.add_datetime|date:"H:i"}}
+                                                    </span>
+                                                </div>
+                                            </header>
+                                            <div class="Comment-content">{{comment.review}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <p>
+                                <form method="get">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <button class="btn btn_muted" type="submit" name="rewShowMore">{% trans "Еще" %}</button>
+                                    </div>
+                                </form>
+                            </p>
+                            <header class="Section-header Section-header_product">
+                                <h3 class="Section-title">{% trans "Добавить отзыв" %}</h3>
+                            </header>
+                            <div class="Tabs-addComment">
+                                <form class="form" method="post">
+                                    {% csrf_token %}
+                                    {% if request.user.is_authenticated %}
+                                        <div class="form-group">
+                                            <textarea class="form-textarea" name="review" id="review" placeholder="Review" data-validate="require"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <button class="btn btn_muted" type="submit">{% trans "Отправить" %}</button>
+                                        </div>
+                                    {% else %}
+                                        <strong style="color: #df3349">
+                                            {% trans "Чтобы оставить озыва необходимо авторизоваться " %} <a href="{% url 'login' %}">{% trans "ссылка" %}</a>.
+                                        </strong>
+                                    {%endif%}
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

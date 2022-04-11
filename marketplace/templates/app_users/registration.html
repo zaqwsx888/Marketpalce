@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% load static %}
+{% load i18n %}
+<html lang="en">
+<head>
+    <title>{{category.name}}</title>
+    {% include 'include/head.html' %}
+</head>
+<body class="Site">
+{% include 'include/header.html' %}
+    <div class="row" style="margin-bottom: 200px; margin-top: 100px;">
+        <div class="col-md-6 offset-md-3">
+            <h3 class="text-center">{% trans "Регистрация" %}</h3>
+            <hr>
+            {% if user.is_authenticated %}
+            <p> Вы уже авторизованы </p>
+            {% else %}
+            <form class="login registration-form" action="{% url 'registration' %}" method="POST" style="background-color: transparent; color: #1b1b1b">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input class="btn login-btn" type="submit" value="{% trans "Зарегистрироваться" %}">
+            </form>
+            {% endif %}
+        </div>
+
+    </div>
+{% include 'include/footer.html' %}
+<script>
+$('#id_phone').mask('+7 (999) 999-99-99');
+</script>
+</body>
+</html>

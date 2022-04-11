@@ -1,0 +1,157 @@
+{% load static %}
+{% load i18n %}
+
+<header class="Header">
+    <div class="ControlPanel">
+        <div class="wrap">
+            <div class="row ControlPanel-row">
+                <div class="row-block">
+                    <div class="row ControlPanel-rowSplit">
+                        <div class="row-block"><a class="ControlPanel-title" href="#">{% trans "Бесплатная доставка" %}</a></div>
+                        <div class="row-block hide_700"><span class="ControlPanel-title">{% trans "Подписывайтесь" %}</span>
+                            <ul class="menu menu_img menu_smallImg ControlPanel-menu">
+                                <li class="menu-item"><a class="menu-link" href="#"><img src="{% static 'img/icons/socialHeader/fb.svg' %}" alt="fb.svg"/></a></li>
+                                <li class="menu-item"><a class="menu-link" href="#"><img src="{% static 'img/icons/socialHeader/tw.svg' %}" alt="tw.svg"/></a></li>
+                                <li class="menu-item"><a class="menu-link" href="#"><img src="{% static 'img/icons/socialHeader/in.svg' %}" alt="in.svg"/></a></li>
+                                <li class="menu-item"><a class="menu-link" href="#"><img src="{% static 'img/icons/socialHeader/pt.svg' %}" alt="pt.svg"/></a></li>
+                                <li class="menu-item"><a class="menu-link" href="#"><img src="{% static 'img/icons/socialHeader/mail.svg' %}" alt="mail.svg"/></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <nav class="row-block">
+                    <div class="row ControlPanel-rowSplit">
+                        <form action="{% url 'set_language' %}" method="post" class="set_lang">
+                            {% csrf_token %}
+                            {% get_current_language as LANGUAGE_CODE %}
+                            <button class="set_lang_btn {% if LANGUAGE_CODE == 'ru'%} set_lang_btn_active{% endif %}"
+                                    type="submit" name="language" value="ru">RU
+                            </button>
+                            <button class="set_lang_btn {% if LANGUAGE_CODE == 'en'%} set_lang_btn_active{% endif %}"
+                                    type="submit" name="language" value="en">EN
+                            </button>
+                        </form>
+                        <div class="row-block">
+                            {% if request.user.is_authenticated %}
+                                {% if request.user.slug %}
+                                    <a class="ControlPanel-title" href="{% url 'account' slug=request.user.slug %}">{{ request.user.email }}</a>
+                                    <span>&nbsp;</span>
+                                    <a class="ControlPanel-title" href="{% url 'logout'%}">{% trans "Выйти" %}</a>
+                                {% endif %}
+                            {% else %}
+                                <a class="ControlPanel-title" href="{% url 'login' %}">{% trans "Войти" %}</a>/
+                                <a class="ControlPanel-title" href="{% url 'registration' %}">{% trans "Регистрация" %}</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="wrap">
+        <div class="row Header-rowMain">
+            <div class="row-block Header-logo">
+                <a class="logo" href="{% url 'main' %}">
+                    <img class="logo-image" src="{% static 'img/logo.png' %}" alt="logo.png"/>
+                </a>
+            </div>
+            <nav class="row-block row-block_right Header-menu">
+                <div class="menuModal" id="navigate">
+                    <ul class="menu menu_main">
+                        <li class="menu-item"><a class="menu-link" href="{% url 'main' %}">{% trans "Главная" %}</a></li>
+                        <li class="menu-item"><a class="menu-link" href="{% url 'category_list' %}">{% trans "Каталог" %}</a></li>
+                        <li class="menu-item"><a class="menu-link" href="{% url 'discounts' %}">{% trans "Скидки" %}</a></li>
+                        <li class="menu-item"><a class="menu-link" href="{% url 'shop_list' %}">{% trans "Магазины" %}</a></li>
+                        <li class="menu-item"><a class="menu-link" href="{% url 'contact' %}">{% trans "Контакты" %}</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="row-block">
+                <div class="CartBlock">
+                    <a class="CartBlock-block" href="{% url 'compare' %}"><img class="CartBlock-img" src="{% static 'img/icons/exchange.svg' %}" alt="exchange.svg"/>
+                        <span class="CartBlock-amount">{{ total_compared_items }}</span>
+                    </a>
+                    <a class="CartBlock-block" href="{% url 'cart' %}">
+                        <img class="CartBlock-img" src="{% static 'img/icons/cart.svg' %}" alt="cart.svg"/>
+                        <span class="CartBlock-amount" id="number_of_goods">{{ count_product_in_cart }}</span>
+                    </a>
+                    <div class="CartBlock-block"><span class="CartBlock-price">{{ total_price_cart }} {% trans "руб" %}.</span></div>
+                </div>
+            </div>
+            <div class="row-block Header-trigger"><a class="menuTrigger" href="#navigate">
+                <div class="menuTrigger-content">{% trans "Меню" %}</div>
+                <span></span><span></span><span></span></a>
+            </div>
+        </div>
+    </div>
+    <div class="Header-searchWrap">
+        <div class="wrap">
+            <div class="Header-categories">
+                <div class="CategoriesButton">
+                    <div class="CategoriesButton-title">
+                        <div class="CategoriesButton-icon">
+                            <img src="{% static 'img/icons/allDep.svg' %}" alt="allDep.svg"/>
+                        </div>
+                        <span class="CategoriesButton-text">{% trans "Каталог" %}</span>
+                        <div class="CategoriesButton-arrow"></div>
+                    </div>
+                    <div class="CategoriesButton-content">
+                        {% for category in categories %}
+                            <div class="CategoriesButton-link">
+                                <a href="{% url 'catalog' slug=category.slug %}">
+                                    <div class="CategoriesButton-icon">
+                                        <img src="{{ category.icon.file.url }}" alt="{{ category.icon.filename }}"/>
+                                    </div>
+                                <span class="CategoriesButton-text">{{ category.name }}</span></a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="Header-searchLink"><img src="{% static 'img/icons/search.svg' %}" alt="search.svg"/></div>
+            <div class="Header-search">
+                <div class="search">
+                    <form class="form form_search" action="{% url 'search_products' %}" method="get">
+                        <input class="search-input" id="query" name="q" type="text"
+                               placeholder="What are you looking for ..."/>
+                        <button class="search-button" type="submit" name="search" id="search"><img
+                                src="{% static 'img/icons/search.svg' %}" alt="search.svg"/>{% trans "Поиск" %}
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if banner_list %}
+        <div class="Header-slider">
+            <div class="Slider Slider_main">
+
+                <div class="Slider-box">
+                    {% for banner in banner_list %}
+                        <div class="Slider-item">
+                            <div class="Slider-content">
+                                <div class="row">
+                                    <div class="row-block">
+                                        <strong class="Slider-title">{{ banner.name }}</strong>
+                                        <div class="Slider-text">{{banner.description}}</div>
+                                        <div class="Slider-footer">
+                                            <a class="btn btn_primary" href="{% url 'good_details' banner.shop_product.slug %}">{{ banner.shop_product }}</a>
+                                        </div>
+                                    </div>
+                                    <div class="row-block">
+                                        <div class="Slider-img"><img src="{{ banner.image.file.url }}" alt="{{ banner.image.filename }}"/></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="Slider-navigateWrap">
+                    <div class="Slider-navigate"></div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+</header>

@@ -1,0 +1,177 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+{% load static %}
+<div class="Middle Middle_top">
+    <div class="Middle-top">
+        <div class="wrap">
+            <div class="Middle-header">
+                <h1 class="Middle-title">{% trans "Личный кабинет" %}
+                </h1>
+                <ul class="breadcrumbs Middle-breadcrumbs">
+                    <li class="breadcrumbs-item"><a href="/">{% trans "Главная" %}</a>
+                    </li>
+                    <li class="breadcrumbs-item breadcrumbs-item_current"><span>{% trans "Личный кабинет" %}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="Section Section_column Section_columnLeft">
+        <div class="wrap">
+            <div class="Section-column">
+                <div class="Section-columnSection">
+                    <header class="Section-header">
+                        <strong class="Section-title">{% trans "Меню" %}
+                        </strong>
+                    </header>
+                    <div class="Section-columnContent">
+                        <div class="NavigateProfile">
+                            <ul class="menu menu_vt">
+                                <li class="menu-item_ACTIVE menu-item"><a class="menu-link"
+                                                                          href="{% url 'account' slug=user.slug %}">{% trans "Личный кабинет" %}</a>
+                                </li>
+                                <li class="menu-item"><a class="menu-link"
+                                                         href="{% url 'account_update' slug=user.slug %}">{% trans "Профиль" %}</a>
+                                </li>
+                                <li class="menu-item"><a class="menu-link"
+                                                         href="{% url 'history_orders' slug=request.user.slug %}">{% trans "История заказов" %}</a>
+                                </li>
+                                <li class="menu-item">
+                                    <a class="menu-link" href="{% url 'history_products' slug=request.user.slug %}">
+                                        {% trans "История просмотров" %}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="Section-content">
+                <div class="Account">
+                    <div class="Account-group">
+                        <div class="Account-column">
+                            <div class="Account-avatar"><img
+                                    src="/media/{{user.avatar}}"
+                                    alt="{{user.avatar}}"/>
+                            </div>
+                        </div>
+                        <div class="Account-column">
+                            <div class="Account-name">{{ user.first_name }} {{user.last_name}}
+                            </div>
+                            <a class="Account-editLink" href="{% url 'account_update' slug=user.slug %}">{% trans "Редактировать профиль" %}</a>
+                        </div>
+                    </div>
+                    <div class="Account-group">
+                        <div class="Account-column Account-column_full">
+                            <div class="Order Order_anons">
+                                <div class="Order-personal">
+                                    {%if order_history%}
+                                    <div class="row">
+                                        <div class="row-block"><a class="Order-title"
+                                                                  href="#">{% trans "Заказ" %}&#32;<span
+                                                class="Order-numberOrder">№{{order_history.id}}</span>&#32;от&#32;<span
+                                                class="Order-dateOrder">{{order_history.date_order}}</span></a>
+                                            <div class="Account-editLink"><a
+                                                    href="#">{% trans "История заказов" %}</a>
+                                            </div>
+                                        </div>
+                                        <div class="row-block">
+                                            <div class="Order-info Order-info_delivery">
+                                                <div class="Order-infoType">{% trans "Тип доставки" %}:
+                                                </div>
+                                                <div class="Order-infoContent">{{order_history.delivery_for_order.get_delivery_display}}
+                                                </div>
+                                            </div>
+                                            <div class="Order-info Order-info_pay">
+                                                <div class="Order-infoType">{% trans "Оплата" %}:
+                                                </div>
+                                                <div class="Order-infoContent">{{ order_history.get_payment_type_display }}
+                                                </div>
+                                            </div>
+                                            <div class="Order-info">
+                                                <div class="Order-infoType">{% trans "Итого" %}:
+                                                </div>
+                                                <div class="Order-infoContent">{{order_history.cart.total_price}}{% trans "руб" %}.
+                                                </div>
+                                            </div>
+                                            <div class="Order-info Order-info_status">
+                                                <div class="Order-infoType">{% trans "Статус" %}:
+                                                </div>
+                                                <div class="Order-infoContent">{{ order_history.get_status_display }}</div>
+                                            </div>
+                                        </div>
+                                    
+                                    </div>
+                                    {%endif%}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Account-group">
+                        <div class="Account-column Account-column_full">
+                            <header class="Section-header">
+                                <h2 class="Section-title">{% trans "История просмотров" %}
+                                </h2>
+                            </header>
+                            <div class="Cards Cards_account">
+                                {% for product in products %}
+                                {% if forloop.counter == 1 %}
+                                <div class="Card">
+                                    <a class="Card-picture" href="{% url 'good_details' slug=product.1.slug %}"><img
+                                        src="{{product.1.main_image.file.url}}"
+                                        alt="{{product.1.main_image.filename}}"/></a>
+                                    {% elif forloop.counter == 2 %}
+                                    <div class="Card hide_700">
+                                        <a class="Card-picture" href="{% url 'good_details' slug=product.1.slug %}"><img
+                                            src="{{product.1.main_image.file.url}}"
+                                            alt="{{product.1.main_image.filename}}"/></a>
+                                        {% else %}
+                                        <div class="Card hide_md">
+                                            <a class="Card-picture" href="{% url 'good_details' slug=product.1.slug %}"><img
+                                                src="{{product.1.main_image.file.url}}"
+                                                alt="{{product.1.main_image.filename}}"/></a>
+                                            {%endif%}
+                                            <div class="Card-content">
+                                                <strong class="Card-title">
+                                                    <a href="{% url 'good_details' slug=product.1.slug %}">{{product.1.model}}</a>
+                                                </strong>
+                                                <div class="Card-description">
+                                                    <div class="Card-cost">
+                                                        {% if product.0 != product.1.min_price %}
+                                                        <span class="Card-priceOld">{{product.1.min_price}}</span>
+                                                        {% endif %}
+                                                        <span class="Card-price">{{product.0}}</span>
+                                                    </div>
+                                                    <div class="Card-category">{{product.1.category.name}}
+                                                    </div>
+                                                    <div class="Card-hover"><a class="Card-btn" href="{% url 'good_details' slug=product.1.slug %}">
+                                                        <img src="{% static 'img/icons/card/bookmark.svg' %}"
+                                                            alt="bookmark.svg"/></a><a class="Card-btn" href="#"><img
+                                                            src="{% static 'img/icons/card/cart.svg' %}"
+                                                            alt="cart.svg"/></a><a class="Card-btn" href="#"><img
+                                                            src="{% static 'img/icons/card/change.svg' %}"
+                                                            alt="change.svg"/></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                             {% if product.0 != product.1.min_price %}
+                                            <div class="Card-sale">{% trans "Скидка" %}</div>
+                                            {% endif %}
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+
+                                    <div class="Account-editLink Account-editLink_view">
+                                        <a href="{% url 'history_products' slug=request.user.slug %}">{% trans "Полный список" %}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

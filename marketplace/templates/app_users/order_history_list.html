@@ -1,0 +1,106 @@
+{% load i18n %}
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <title>{% trans "История заказов" %}</title>
+    {% include 'include/head.html' %}
+</head>
+<body class="Site">
+  {% include 'include/header.html' %}
+
+  <div class="Middle Middle_top">
+    <div class="Middle-top">
+      <div class="wrap">
+        <div class="Middle-header">
+          <h1 class="Middle-title">{% trans "История заказов" %}
+          </h1>
+          <ul class="breadcrumbs Middle-breadcrumbs">
+            <li class="breadcrumbs-item"><a href="{% url 'main' %}">{% trans "Главная" %}</a>
+            </li>
+            <li class="breadcrumbs-item breadcrumbs-item_current"><span>{% trans "История заказов" %}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="Section Section_column Section_columnLeft">
+      <div class="wrap">
+        <div class="Section-column">
+          <div class="Section-columnSection">
+            <header class="Section-header">
+              <strong class="Section-title">{% trans "Меню" %}
+              </strong>
+            </header>
+            <div class="Section-columnContent">
+              <div class="NavigateProfile">
+                <ul class="menu menu_vt">
+                  <li class="menu-item">
+                      <a class="menu-link" href="{% url 'account' slug=request.user.slug %}">{% trans "Личный кабинет" %}</a>
+                  </li>
+                  <li class="menu-item">
+                      <a class="menu-link" href="{% url 'account_update' slug=request.user.slug %}">{% trans "Профиль" %}</a>
+                  </li>
+                  <li class="menu-item_ACTIVE menu-item">
+                      <a class="menu-link" href="{% url 'history_orders' slug=request.user.slug %}">{% trans "История заказов" %}</a>
+                  </li>
+                  <li class="menu-item">
+                      <a class="menu-link" href="{% url 'history_products' slug=request.user.slug %}">{% trans "История просмотров" %}</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="Section-content">
+          <div class="Orders">
+              {% for order in order_list %}
+            <div class="Order Order_anons">
+              <div class="Order-personal">
+                <div class="row">
+                  <div class="row-block">
+                      <a class="Order-title" href="{% url 'user_order_detail' slug=request.user.slug pk=order.id %}">{% trans "Заказ" %}&#32;
+                          <span class="Order-numberOrder">{{order.id}}</span>&#32;{% trans "от" %}&#32;
+                          <span class="Order-dateOrder">{{ order.date_order }}</span>
+                      </a>
+                  </div>
+                  <div class="row-block">
+                    <div class="Order-info Order-info_delivery">
+                      <div class="Order-infoType">{% trans "Тип доставки" %}:
+                      </div>
+                      <div class="Order-infoContent">{{ order.delivery_for_order.get_delivery_display }}
+                      </div>
+                    </div>
+                    <div class="Order-info Order-info_pay">
+                      <div class="Order-infoType">{% trans "оплата" %}:
+                      </div>
+                      <div class="Order-infoContent">{{ order.get_payment_type_display }}
+                      </div>
+                    </div>
+                    <div class="Order-info">
+                      <div class="Order-infoType">{% trans "Итого" %}:
+                      </div>
+                      <div class="Order-infoContent">
+                          <span class="Order-price">{{ order.cart.total_price}}</span>
+                      </div>
+                    </div>
+                    <div class="Order-info Order-info_status">
+                      <div class="Order-infoType">{% trans "Статус" %}:
+                      </div>
+                      <div class="Order-infoContent">{{ order.get_status_display }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+              {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% include 'include/footer.html' %}
+</body>
+</html>

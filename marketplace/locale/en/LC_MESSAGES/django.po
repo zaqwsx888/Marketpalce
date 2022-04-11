@@ -1,0 +1,1174 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-04-03 12:05+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: .\app_marketplace\forms.py:17
+msgid "Выбор кэша"
+msgstr "Choose cache"
+
+#: .\app_marketplace\forms.py:27 .\app_marketplace\models.py:90
+#: .\app_marketplace\models.py:550
+msgid "Страна"
+msgstr "Country"
+
+#: .\app_marketplace\forms.py:28 .\app_marketplace\models.py:92
+#: .\app_marketplace\models.py:553
+#: .\templates\app_marketplace\confirm_order.html:93
+#: .\templates\app_users\user_order_detail.html:72
+msgid "Город"
+msgstr "City"
+
+#: .\app_marketplace\forms.py:30 .\app_marketplace\models.py:93
+#: .\app_marketplace\models.py:555
+msgid "Улица"
+msgstr "Street"
+
+#: .\app_marketplace\forms.py:31 .\app_marketplace\models.py:94
+#: .\app_marketplace\models.py:556
+msgid "Дом"
+msgstr "House"
+
+#: .\app_marketplace\forms.py:32 .\app_marketplace\models.py:558
+msgid "Квартира"
+msgstr "Apartment"
+
+#: .\app_marketplace\forms.py:34 .\app_marketplace\models.py:561
+msgid "Подъезд"
+msgstr "Entrance"
+
+#: .\app_marketplace\forms.py:35 .\app_marketplace\models.py:95
+#: .\app_marketplace\models.py:564
+msgid "Этаж"
+msgstr "Floor"
+
+#: .\app_marketplace\forms.py:66
+msgid "Введено нечетное число"
+msgstr "An odd number is entered"
+
+#: .\app_marketplace\forms.py:68
+msgid "Введите целое число"
+msgstr "Enter an integer"
+
+#: .\app_marketplace\models.py:23
+msgid "Иконка категории"
+msgstr "Category Icon"
+
+#: .\app_marketplace\models.py:26 .\app_marketplace\models.py:44
+#: .\app_marketplace\models.py:63 .\app_marketplace\models.py:69
+#: .\app_marketplace\models.py:109 .\app_marketplace\models.py:165
+#: .\app_marketplace\models.py:205 .\app_marketplace\models.py:391
+#: .\app_marketplace\models.py:696
+msgid "Название"
+msgstr "Name"
+
+#: .\app_marketplace\models.py:35 .\app_marketplace\models.py:209
+msgid "Категория"
+msgstr "Category"
+
+#: .\app_marketplace\models.py:36
+msgid "Категории"
+msgstr "Categories"
+
+#: .\app_marketplace\models.py:48 .\app_marketplace\models.py:77
+#: .\app_marketplace\models.py:83
+msgid "Значение"
+msgstr "Value"
+
+#: .\app_marketplace\models.py:55
+msgid "Характеристика"
+msgstr "Characteristic"
+
+#: .\app_marketplace\models.py:56 .\app_marketplace\models.py:214
+#: .\templates\app_marketplace\product_details.html:104
+msgid "Характеристики"
+msgstr "Characteristics"
+
+#: .\app_marketplace\models.py:70
+msgid "Названия"
+msgstr "Names"
+
+#: .\app_marketplace\models.py:84
+msgid "Значения"
+msgstr "Values"
+
+#: .\app_marketplace\models.py:99 .\app_marketplace\models.py:121
+#: .\templates\app_marketplace\confirm_order.html:99
+#: .\templates\app_users\user_order_detail.html:78
+#: .\templates\include\footer.html:55
+msgid "Адрес"
+msgstr "Address"
+
+#: .\app_marketplace\models.py:100
+msgid "Адреса"
+msgstr "Addresses"
+
+#: .\app_marketplace\models.py:110 .\app_marketplace\models.py:167
+#: .\app_marketplace\models.py:207 .\app_marketplace\models.py:698
+msgid "Описание"
+msgstr "Description"
+
+#: .\app_marketplace\models.py:113
+msgid "Изображение"
+msgstr "Image"
+
+#: .\app_marketplace\models.py:115 .\app_users\forms.py:43
+#: .\app_users\models.py:36 .\templates\app_marketplace\confirm_order.html:73
+#: .\templates\app_marketplace\contact.html:63
+#: .\templates\app_marketplace\shop_details.html:63
+#: .\templates\app_users\profile.html:89
+#: .\templates\app_users\user_order_detail.html:52
+msgid "Телефон"
+msgstr "Phone"
+
+#: .\app_marketplace\models.py:130 .\app_marketplace\models.py:343
+#: .\app_marketplace\models.py:682
+msgid "Магазин"
+msgstr "Shop"
+
+#: .\app_marketplace\models.py:131
+#: .\templates\app_marketplace\shop-list.html:10
+#: .\templates\app_marketplace\shop-list.html:14
+#: .\templates\include\footer.html:35
+#: .\templates\include\header.html:64
+msgid "Магазины"
+msgstr "Shops"
+
+#: .\app_marketplace\models.py:146 .\app_marketplace\models.py:155
+#: .\app_marketplace\models.py:170
+msgid "Тип скидки"
+msgstr "Discount type"
+
+#: .\app_marketplace\models.py:148 .\app_marketplace\models.py:194
+#: .\app_marketplace\models.py:500
+#: .\templates\app_marketplace\discount_detail.html:13
+#: .\templates\app_marketplace\discount_detail.html:38
+#: .\templates\app_users\account.html:159
+#: .\templates\app_users\view_history_products.html:89
+msgid "Скидка"
+msgstr "Discount"
+
+#: .\app_marketplace\models.py:151
+msgid "Вес скидки"
+msgstr "Weight"
+
+#: .\app_marketplace\models.py:156
+msgid "Типы скидок"
+msgstr "Types"
+
+#: .\app_marketplace\models.py:173
+msgid "Дата начала"
+msgstr "Start date"
+
+#: .\app_marketplace\models.py:175
+msgid "Дата окончания"
+msgstr "End date"
+
+#: .\app_marketplace\models.py:177
+msgid "Активная скидка"
+msgstr "Active discount"
+
+#: .\app_marketplace\models.py:181
+msgid "Скидка по процентам"
+msgstr "Percentage discount"
+
+#: .\app_marketplace\models.py:186
+msgid "Скидка по значению"
+msgstr "Value discount"
+
+#: .\app_marketplace\models.py:195 .\app_marketplace\models.py:355
+#: .\templates\app_marketplace\discounts.html:13
+#: .\templates\include\footer.html:33
+#: .\templates\include\header.html:63
+msgid "Скидки"
+msgstr "Discounts"
+
+#: .\app_marketplace\models.py:217
+msgid "Главное изображение"
+msgstr "Main image"
+
+#: .\app_marketplace\models.py:220
+msgid "Галлерея"
+msgstr "Gallery"
+
+#: .\app_marketplace\models.py:224 .\app_marketplace\models.py:289
+#: .\app_marketplace\models.py:309
+msgid "Файлы"
+msgstr "Files"
+
+#: .\app_marketplace\models.py:230
+msgid "Дата создания"
+msgstr "Creation date"
+
+#: .\app_marketplace\models.py:233
+msgid "Ограниченный тираж"
+msgstr "Limited product's"
+
+#: .\app_marketplace\models.py:237
+msgid "Суидки"
+msgstr "Discounts"
+
+#: .\app_marketplace\models.py:240
+msgid "Артикул"
+msgstr "Article"
+
+#: .\app_marketplace\models.py:244 .\templates\app_marketplace\catalog.html:65
+msgid "Производитель"
+msgstr "Manufacturer"
+
+#: .\app_marketplace\models.py:248
+msgid "Счетчик просмотров"
+msgstr "View's count"
+
+#: .\app_marketplace\models.py:255 .\app_marketplace\models.py:318
+#: .\app_marketplace\models.py:347 .\app_marketplace\models.py:394
+#: .\app_marketplace\models.py:412 .\app_marketplace\models.py:452
+#: .\app_marketplace\models.py:471 .\app_marketplace\models.py:489
+#: .\app_marketplace\models.py:706
+#: .\templates\app_marketplace\product_details.html:13
+msgid "Товар"
+msgstr "Product"
+
+#: .\app_marketplace\models.py:256 .\app_marketplace\models.py:472
+msgid "Товары"
+msgstr "Products"
+
+#: .\app_marketplace\models.py:308
+msgid "Файл"
+msgstr "File"
+
+#: .\app_marketplace\models.py:315 .\app_marketplace\models.py:326
+msgid "Тег"
+msgstr "Tag"
+
+#: .\app_marketplace\models.py:327
+#: .\templates\app_marketplace\product_details.html:93
+msgid "Теги"
+msgstr "Tags"
+
+#: .\app_marketplace\models.py:350 .\app_marketplace\models.py:460
+#: .\app_marketplace\models.py:492
+msgid "Количество"
+msgstr "Quantity"
+
+#: .\app_marketplace\models.py:352 .\templates\app_marketplace\catalog.html:43
+msgid "Цена"
+msgstr "Price"
+
+#: .\app_marketplace\models.py:362
+msgid "Товар магазина"
+msgstr "Shop product"
+
+#: .\app_marketplace\models.py:363
+msgid "Товары магазина"
+msgstr "Shop products"
+
+#: .\app_marketplace\models.py:403
+msgid "Группа"
+msgstr "Group"
+
+#: .\app_marketplace\models.py:404
+msgid "Группы"
+msgstr "Groups"
+
+#: .\app_marketplace\models.py:416 .\app_marketplace\models.py:456
+#: .\app_marketplace\models.py:485 .\app_marketplace\models.py:585
+msgid "Пользователь"
+msgstr "User"
+
+#: .\app_marketplace\models.py:419 .\app_marketplace\models.py:428
+msgid "Отзыв"
+msgstr "Review"
+
+#: .\app_marketplace\models.py:429
+#: .\templates\app_marketplace\product_details.html:108
+msgid "Отзывы"
+msgstr "Reviews"
+
+#: .\app_marketplace\models.py:464 .\templates\app_marketplace\cart.html:85
+#: .\templates\app_marketplace\confirm_order.html:164
+#: .\templates\app_users\account.html:93
+#: .\templates\app_users\order_history_list.html:82
+#: .\templates\app_users\user_order_detail.html:138
+msgid "Итого"
+msgstr "Total"
+
+#: .\app_marketplace\models.py:479 .\app_marketplace\models.py:519
+msgid "Активно"
+msgstr "Actively"
+
+#: .\app_marketplace\models.py:480 .\app_marketplace\models.py:520
+msgid "Завершено"
+msgstr "Complete"
+
+#: .\app_marketplace\models.py:496
+msgid "Общая цена товаров"
+msgstr "Total price"
+
+#: .\app_marketplace\models.py:504 .\app_marketplace\models.py:547
+#: .\app_marketplace\models.py:679 .\app_marketplace\models.py:689
+#: .\templates\app_users\account.html:99
+#: .\templates\app_users\order_history_list.html:89
+#: .\templates\app_users\user_order_detail.html:90
+msgid "Статус"
+msgstr "Status"
+
+#: .\app_marketplace\models.py:511 .\app_marketplace\models.py:529
+#: .\templates\app_marketplace\cart.html:6
+#: .\templates\app_marketplace\cart.html:15
+#: .\templates\app_marketplace\cart.html:20
+msgid "Корзина"
+msgstr "Cart"
+
+#: .\app_marketplace\models.py:512
+msgid "Корзины"
+msgstr "Carts"
+
+#: .\app_marketplace\models.py:524
+msgid "Платеж картой"
+msgstr "Card payment"
+
+#: .\app_marketplace\models.py:525
+msgid "Платеж со случайного счета"
+msgstr "Payment from random card"
+
+#: .\app_marketplace\models.py:534 .\app_marketplace\models.py:645
+#: .\templates\include\footer.html:31
+msgid "Доставка"
+msgstr "Delivery"
+
+#: .\app_marketplace\models.py:538
+#: .\templates\app_marketplace\confirm_order.html:41
+#: .\templates\app_marketplace\create_order_delivery.html:41
+#: .\templates\app_marketplace\create_order_payment.html:41
+#: .\templates\app_marketplace\create_order_payment.html:53
+#: .\templates\app_marketplace\user_order.html:41
+msgid "Тип платежа"
+msgstr "Payment type"
+
+#: .\app_marketplace\models.py:542
+msgid "Платеж"
+msgstr "Payment"
+
+#: .\app_marketplace\models.py:568
+msgid "Сумма заказа"
+msgstr "Order total price"
+
+#: .\app_marketplace\models.py:572 .\app_marketplace\models.py:604
+#: .\app_marketplace\models.py:657 .\templates\app_users\account.html:72
+#: .\templates\app_users\order_history_list.html:63
+#: .\templates\app_users\user_order_detail.html:16
+#: .\templates\app_users\user_order_detail.html:23
+msgid "Заказ"
+msgstr "Order"
+
+#: .\app_marketplace\models.py:573
+msgid "Заказы"
+msgstr "Orders"
+
+#: .\app_marketplace\models.py:589
+msgid "Посмотренный товар"
+msgstr "Viewed product"
+
+#: .\app_marketplace\models.py:593
+msgid "История просмотра"
+msgstr "History view"
+
+#: .\app_marketplace\models.py:594
+msgid "Истории просмотров"
+msgstr "Histories view"
+
+#: .\app_marketplace\models.py:608
+msgid "Дата покупки"
+msgstr "Date of purchase"
+
+#: .\app_marketplace\models.py:612
+msgid "История покупок"
+msgstr "Purchase history"
+
+#: .\app_marketplace\models.py:613
+msgid "Истории покупок"
+msgstr "Purchase histories"
+
+#: .\app_marketplace\models.py:623
+msgid "Обычная доставка"
+msgstr "Standart delivery"
+
+#: .\app_marketplace\models.py:624
+msgid "Экспресс доставка"
+msgstr "Express delivery"
+
+#: .\app_marketplace\models.py:628
+#: .\templates\app_marketplace\confirm_order.html:39
+#: .\templates\app_marketplace\confirm_order.html:87
+#: .\templates\app_marketplace\create_order_delivery.html:39
+#: .\templates\app_marketplace\create_order_delivery.html:53
+#: .\templates\app_marketplace\create_order_payment.html:39
+#: .\templates\app_marketplace\user_order.html:39
+#: .\templates\app_users\account.html:81
+#: .\templates\app_users\order_history_list.html:70
+#: .\templates\app_users\user_order_detail.html:66
+msgid "Тип доставки"
+msgstr "Delivery type"
+
+#: .\app_marketplace\models.py:633
+msgid "Стоимость доставки"
+msgstr "Delivery price"
+
+#: .\app_marketplace\models.py:637
+msgid "Наценка"
+msgstr "Markup"
+
+#: .\app_marketplace\models.py:641
+msgid "Цена товаров для бесплатной доставки"
+msgstr "The price of product's for free delivery"
+
+#: .\app_marketplace\models.py:646
+msgid "Доставки"
+msgstr "Deliveries"
+
+#: .\app_marketplace\models.py:661
+msgid "Цена с учетом доставки"
+msgstr "Price with delivery"
+
+#: .\app_marketplace\models.py:664
+msgid "Подтверждение оплаты"
+msgstr "Confirm payment"
+
+#: .\app_marketplace\models.py:668 .\app_marketplace\models.py:669
+#: .\templates\app_marketplace\create_payment.html:16
+#: .\templates\app_users\account.html:87
+#: .\templates\app_users\user_order_detail.html:84
+msgid "Оплата"
+msgstr "Payment"
+
+#: .\app_marketplace\models.py:690
+msgid "Статусы"
+msgstr "Statuses"
+
+#: .\app_marketplace\models.py:702
+msgid "Изображение баннера"
+msgstr "Banner image"
+
+#: .\app_marketplace\models.py:709
+msgid "Приоритет"
+msgstr "Priority"
+
+#: .\app_marketplace\models.py:712
+msgid "Активный слайдер"
+msgstr "Active slider"
+
+#: .\app_marketplace\models.py:719
+msgid "Баннер"
+msgstr "Banner"
+
+#: .\app_marketplace\models.py:720
+msgid "Баннеры"
+msgstr "Banners"
+
+#: .\app_marketplace\tasks.py:17
+#, python-format
+msgid "Import error %s"
+msgstr "Import error %s"
+
+#: .\app_users\forms.py:18 .\app_users\forms.py:45
+#: .\templates\app_users\profile.html:106
+msgid "Пароль"
+msgstr "Password"
+
+#: .\app_users\forms.py:29
+msgid "Неверный пароль"
+msgstr "Wrong password"
+
+#: .\app_users\forms.py:41 .\templates\app_marketplace\confirm_order.html:61
+#: .\templates\app_marketplace\user_order.html:81
+msgid "Имя"
+msgstr "Name"
+
+#: .\app_users\forms.py:42 .\templates\app_marketplace\confirm_order.html:67
+#: .\templates\app_marketplace\user_order.html:86
+msgid "Фамилия"
+msgstr "Last name"
+
+#: .\app_users\forms.py:44
+msgid "email"
+msgstr "email"
+
+#: .\app_users\forms.py:46
+msgid "Пароль еще раз"
+msgstr "Password again"
+
+#: .\app_users\forms.py:51 .\app_users\forms.py:116
+msgid "Не верный телефон"
+msgstr "Wrong phone number"
+
+#: .\app_users\forms.py:64 .\app_users\forms.py:109
+msgid "Этот email уже используется"
+msgstr "This email already exist"
+
+#: .\app_users\forms.py:72 .\app_users\forms.py:123
+msgid "Пароли не совпадают"
+msgstr "Password's didn't match"
+
+#: .\app_users\models.py:28 .\templates\app_users\profile.html:59
+msgid "Аватар"
+msgstr "Avatar"
+
+#: .\app_users\models.py:39
+msgid "Электронная почта подтверждена"
+msgstr "Email is confirmed"
+
+#: .\app_users\models.py:47
+msgid "Статус пользователя"
+msgstr "User status"
+
+#: .\templates\admin\import_export\change_list_export_item.html:5
+msgid "Export"
+msgstr "Export"
+
+#: .\templates\admin\import_export\change_list_import_item.html:5
+msgid "Import"
+msgstr "Import"
+
+#: .\templates\app_marketplace\cart.html:18
+#: .\templates\app_marketplace\catalog.html:14
+#: .\templates\app_marketplace\categories.html:12
+#: .\templates\app_marketplace\compare.html:13
+#: .\templates\app_marketplace\confirm_order.html:18
+#: .\templates\app_marketplace\contact.html:14
+#: .\templates\app_marketplace\create_order_delivery.html:18
+#: .\templates\app_marketplace\create_order_payment.html:18
+#: .\templates\app_marketplace\create_payment.html:19
+#: .\templates\app_marketplace\discount_detail.html:12
+#: .\templates\app_marketplace\discounts.html:12
+#: .\templates\app_marketplace\product_details.html:12
+#: .\templates\app_marketplace\shop-list.html:12
+#: .\templates\app_marketplace\shop_details.html:14
+#: .\templates\app_marketplace\user_order.html:19
+#: .\templates\app_users\account.html:12
+#: .\templates\app_users\order_history_list.html:20
+#: .\templates\app_users\password_reset_done.html:14
+#: .\templates\app_users\profile.html:14
+#: .\templates\app_users\user_order_detail.html:19
+#: .\templates\app_users\view_history_products.html:18
+#: .\templates\include\header.html:61
+msgid "Главная"
+msgstr "Main"
+
+#: .\templates\app_marketplace\cart.html:29
+msgid "Корзина пуста"
+msgstr "Cart is empty"
+
+#: .\templates\app_marketplace\cart.html:86
+#: .\templates\app_marketplace\discount_detail.html:40
+#: .\templates\app_users\account.html:95
+#: .\templates\app_users\user_order_detail.html:120
+#: .\templates\app_users\user_order_detail.html:138
+#: .\templates\include\header.html:78
+msgid "руб"
+msgstr "rub"
+
+#: .\templates\app_marketplace\cart.html:89
+msgid "Оформить заказ"
+msgstr "Create order"
+
+#: .\templates\app_marketplace\catalog.html:16
+#: .\templates\app_marketplace\categories.html:10
+#: .\templates\app_marketplace\categories.html:14
+#: .\templates\include\header.html:62 .\templates\include\header.html:95
+msgid "Каталог"
+msgstr "Catalog"
+
+#: .\templates\app_marketplace\catalog.html:55
+#: .\templates\app_marketplace\confirm_order.html:152
+#: .\templates\app_users\user_order_detail.html:126
+msgid "Продавец"
+msgstr "Seller"
+
+#: .\templates\app_marketplace\catalog.html:78
+msgid "Только товары в наличии"
+msgstr "Product in stock"
+
+#: .\templates\app_marketplace\catalog.html:84
+msgid "Применить"
+msgstr "Apply"
+
+#: .\templates\app_marketplace\catalog.html:85
+msgid "Сбросить"
+msgstr "Reset"
+
+#: .\templates\app_marketplace\catalog.html:94
+msgid "Сортировать по:"
+msgstr "Sorted on"
+
+#: .\templates\app_marketplace\catalog.html:104
+msgid "популярности"
+msgstr "popularity"
+
+#: .\templates\app_marketplace\catalog.html:115
+msgid "цене"
+msgstr "price"
+
+#: .\templates\app_marketplace\catalog.html:117
+msgid "отзывам"
+msgstr "reviews"
+
+#: .\templates\app_marketplace\catalog.html:118
+msgid "новизне"
+msgstr "newest"
+
+#: .\templates\app_marketplace\categories.html:36
+msgid "Категория пуста"
+msgstr "Category is empty"
+
+#: .\templates\app_marketplace\compare.html:11
+#: .\templates\app_marketplace\compare.html:14
+msgid "Сравнение товаров"
+msgstr "Products compare"
+
+#: .\templates\app_marketplace\compare.html:25
+msgid "Нет товаров для сравнения"
+msgstr "No products to compare"
+
+#: .\templates\app_marketplace\compare.html:77
+msgid "Только различающиеся характеристики"
+msgstr "Only differing characteristics"
+
+#: .\templates\app_marketplace\confirm_order.html:15
+#: .\templates\app_marketplace\confirm_order.html:20
+#: .\templates\app_marketplace\create_order_delivery.html:15
+#: .\templates\app_marketplace\create_order_delivery.html:20
+#: .\templates\app_marketplace\create_order_payment.html:15
+#: .\templates\app_marketplace\create_order_payment.html:20
+#: .\templates\app_marketplace\create_payment.html:21
+#: .\templates\app_marketplace\user_order.html:16
+#: .\templates\app_marketplace\user_order.html:21
+msgid "Оформление заказа"
+msgstr "Making an order"
+
+#: .\templates\app_marketplace\confirm_order.html:31
+#: .\templates\app_marketplace\create_order_delivery.html:31
+#: .\templates\app_marketplace\create_order_payment.html:31
+#: .\templates\app_marketplace\user_order.html:32
+msgid "Процесс оформления"
+msgstr "The registration process"
+
+#: .\templates\app_marketplace\confirm_order.html:37
+#: .\templates\app_marketplace\confirm_order.html:39
+#: .\templates\app_marketplace\confirm_order.html:41
+#: .\templates\app_marketplace\confirm_order.html:43
+#: .\templates\app_marketplace\confirm_order.html:52
+#: .\templates\app_marketplace\create_order_delivery.html:37
+#: .\templates\app_marketplace\create_order_delivery.html:39
+#: .\templates\app_marketplace\create_order_delivery.html:41
+#: .\templates\app_marketplace\create_order_delivery.html:43
+#: .\templates\app_marketplace\create_order_delivery.html:53
+#: .\templates\app_marketplace\create_order_payment.html:37
+#: .\templates\app_marketplace\create_order_payment.html:39
+#: .\templates\app_marketplace\create_order_payment.html:41
+#: .\templates\app_marketplace\create_order_payment.html:43
+#: .\templates\app_marketplace\create_order_payment.html:53
+#: .\templates\app_marketplace\user_order.html:37
+#: .\templates\app_marketplace\user_order.html:39
+#: .\templates\app_marketplace\user_order.html:41
+#: .\templates\app_marketplace\user_order.html:43
+#: .\templates\app_marketplace\user_order.html:53
+msgid "Шаг"
+msgstr "Step"
+
+#: .\templates\app_marketplace\confirm_order.html:37
+msgid "Данные пользователя"
+msgstr "User parameters"
+
+#: .\templates\app_marketplace\confirm_order.html:43
+#: .\templates\app_marketplace\confirm_order.html:52
+#: .\templates\app_marketplace\create_order_delivery.html:43
+#: .\templates\app_marketplace\create_order_payment.html:43
+#: .\templates\app_marketplace\user_order.html:43
+msgid "Потдверждение заказа"
+msgstr "Confirm order"
+
+#: .\templates\app_marketplace\confirm_order.html:101
+msgid "дом"
+msgstr "house"
+
+#: .\templates\app_marketplace\confirm_order.html:101
+msgid "квартира"
+msgstr "apartment"
+
+#: .\templates\app_marketplace\confirm_order.html:103
+msgid "подъезд"
+msgstr "entrance"
+
+#: .\templates\app_marketplace\confirm_order.html:106
+msgid "этаж"
+msgstr "floor"
+
+#: .\templates\app_marketplace\confirm_order.html:111
+msgid "Тип оплаты"
+msgstr "Payment type"
+
+#: .\templates\app_marketplace\confirm_order.html:157
+msgid "шт."
+msgstr "pcs."
+
+#: .\templates\app_marketplace\confirm_order.html:168
+#: .\templates\app_marketplace\create_payment.html:44
+msgid "Оплатить"
+msgstr "Pay"
+
+#: .\templates\app_marketplace\contact.html:12
+#: .\templates\app_marketplace\contact.html:15
+#: .\templates\include\footer.html:37 .\templates\include\header.html:65
+#: .\templates\include\footer.html:53
+msgid "Контакты"
+msgstr "Contacts"
+
+#: .\templates\app_marketplace\contact.html:28
+#: .\templates\app_marketplace\home.html:237
+#: .\templates\app_marketplace\shop_details.html:28
+msgid "Доставка и возврат"
+msgstr "Delivery and return"
+
+#: .\templates\app_marketplace\contact.html:29
+#: .\templates\app_marketplace\home.html:238
+#: .\templates\app_marketplace\shop_details.html:29
+msgid "Доставка по всему миру"
+msgstr "World wide delivery"
+
+#: .\templates\app_marketplace\contact.html:37
+#: .\templates\app_marketplace\home.html:248
+#: .\templates\app_marketplace\shop_details.html:37
+msgid "Возврат денег"
+msgstr "Money back"
+
+#: .\templates\app_marketplace\contact.html:38
+#: .\templates\app_marketplace\home.html:249
+#: .\templates\app_marketplace\shop_details.html:38
+msgid "Гарантия платежей"
+msgstr "Guarantee payments"
+
+#: .\templates\app_marketplace\contact.html:46
+#: .\templates\app_marketplace\home.html:259
+#: .\templates\app_marketplace\shop_details.html:46
+msgid "Политика тех. поддержки"
+msgstr "Support policy"
+
+#: .\templates\app_marketplace\contact.html:47
+#: .\templates\app_marketplace\home.html:260
+#: .\templates\app_marketplace\shop_details.html:47
+msgid "Быстрая тех. поддержка"
+msgstr "Fast support"
+
+#: .\templates\app_marketplace\contact.html:55
+#: .\templates\app_marketplace\home.html:270
+#: .\templates\app_marketplace\shop_details.html:55
+msgid "Гарантия качества"
+msgstr "Guarantee quality"
+
+#: .\templates\app_marketplace\contact.html:56
+#: .\templates\app_marketplace\home.html:271
+#: .\templates\app_marketplace\shop_details.html:56
+msgid "Лучшие товары"
+msgstr "Best products"
+
+#: .\templates\app_marketplace\contact.html:71
+msgid "Москва, Россия"
+msgstr "Moscow, Russia"
+
+#: .\templates\app_marketplace\contact.html:82
+#: .\templates\app_marketplace\shop_details.html:82
+#: .\templates\include\header.html:11
+msgid "Подписывайтесь"
+msgstr "Follow us"
+
+#: .\templates\app_marketplace\contact.html:100
+msgid "Megano marketplace"
+msgstr ""
+
+#: .\templates\app_marketplace\contact.html:101
+msgid "Агрегатор электроники федеральных сетей"
+msgstr "Marketplace for electronics"
+
+#: .\templates\app_marketplace\create_order_delivery.html:37
+#: .\templates\app_marketplace\create_order_payment.html:37
+#: .\templates\app_marketplace\user_order.html:37
+#: .\templates\app_marketplace\user_order.html:53
+msgid "Параметры пользователя"
+msgstr "User parameters"
+
+#: .\templates\app_marketplace\create_order_delivery.html:114
+#: .\templates\app_marketplace\create_order_payment.html:60
+#: .\templates\app_marketplace\user_order.html:74
+#: .\templates\app_marketplace\user_order.html:96
+msgid "Дальше"
+msgstr "Next"
+
+#: .\templates\app_marketplace\create_payment.html:34
+msgid "Номер счета"
+msgstr "Account number"
+
+#: .\templates\app_marketplace\create_payment.html:39
+msgid "Сгенерировать случайный счет"
+msgstr "Payment from random card"
+
+#: .\templates\app_marketplace\discount_detail.html:34
+msgid "С"
+msgstr "With"
+
+#: .\templates\app_marketplace\discount_detail.html:36
+msgid "По"
+msgstr "By"
+
+#: .\templates\app_marketplace\discount_detail.html:38
+#: .\templates\app_marketplace\discount_detail.html:40
+msgid "От"
+msgstr "From"
+
+#: .\templates\app_marketplace\discounts.html:44
+msgid "Скидки остутсвуют"
+msgstr "Discounts is empty"
+
+#: .\templates\app_marketplace\home.html:38
+msgid "Приложение дня"
+msgstr "Day offer"
+
+#: .\templates\app_marketplace\home.html:65
+msgid "дней"
+msgstr "days"
+
+#: .\templates\app_marketplace\home.html:71
+msgid "часов"
+msgstr "hours"
+
+#: .\templates\app_marketplace\home.html:77
+msgid "минут"
+msgstr "minutes"
+
+#: .\templates\app_marketplace\home.html:83
+msgid "секунд"
+msgstr "seconds"
+
+#: .\templates\app_marketplace\home.html:98
+#: .\templates\app_marketplace\shop_details.html:107
+msgid "Популярные товары"
+msgstr "Popular products"
+
+#: .\templates\app_marketplace\home.html:163
+msgid "Горячие предложения"
+msgstr "Hot offers"
+
+#: .\templates\app_marketplace\home.html:282
+msgid "Ограниченные предложения"
+msgstr "Limited products"
+
+#: .\templates\app_marketplace\product_details.html:80
+msgid "В корзину"
+msgstr "Add to cart"
+
+#: .\templates\app_marketplace\product_details.html:86
+msgid "Товар не доступен"
+msgstr "Product is not available"
+
+#: .\templates\app_marketplace\product_details.html:106
+msgid "Продавцы"
+msgstr "Sellers"
+
+#: .\templates\app_marketplace\product_details.html:132
+msgid "Купить"
+msgstr "Buy"
+
+#: .\templates\app_marketplace\product_details.html:141
+msgid "Кол-во отзывов"
+msgstr "Reviews count"
+
+#: .\templates\app_marketplace\product_details.html:172
+msgid "Еще"
+msgstr "Show more"
+
+#: .\templates\app_marketplace\product_details.html:177
+msgid "Добавить отзыв"
+msgstr "Add review"
+
+#: .\templates\app_marketplace\product_details.html:187
+msgid "Отправить"
+msgstr "Send"
+
+#: .\templates\app_marketplace\product_details.html:191
+msgid "Чтобы оставить озыва необходимо авторизоваться "
+msgstr "To leave a review, you need to log in"
+
+#: .\templates\app_marketplace\product_details.html:191
+msgid "ссылка"
+msgstr "link"
+
+#: .\templates\app_marketplace\search_products.html:9
+msgid "Найденные товары:"
+msgstr "Found products:"
+
+#: .\templates\app_marketplace\shop-list.html:36
+msgid "Нет магазинов"
+msgstr "No shops"
+
+#: .\templates\app_marketplace\shop_details.html:12
+#: .\templates\app_marketplace\shop_details.html:15
+msgid "О"
+msgstr "About"
+
+#: .\templates\app_marketplace\user_order.html:71
+msgid "Я уже зарегистрирован"
+msgstr "I am already registered"
+
+#: .\templates\app_users\account.html:9 .\templates\app_users\account.html:14
+#: .\templates\app_users\account.html:32
+#: .\templates\app_users\order_history_list.html:40
+#: .\templates\app_users\profile.html:34
+#: .\templates\app_users\view_history_products.html:39
+#: .\templates\include\footer.html:42
+msgid "Личный кабинет"
+msgstr "Personal account"
+
+#: .\templates\app_users\account.html:25
+#: .\templates\app_users\order_history_list.html:33
+#: .\templates\app_users\profile.html:27
+#: .\templates\app_users\view_history_products.html:31
+#: .\templates\include\header.html:82
+msgid "Меню"
+msgstr "Menu"
+
+#: .\templates\app_users\account.html:35
+#: .\templates\app_users\order_history_list.html:43
+#: .\templates\app_users\profile.html:11 .\templates\app_users\profile.html:16
+#: .\templates\app_users\profile.html:37
+#: .\templates\app_users\view_history_products.html:44
+msgid "Профиль"
+msgstr "Profile"
+
+#: .\templates\app_users\account.html:38 .\templates\app_users\account.html:76
+#: .\templates\app_users\order_history_list.html:7
+#: .\templates\app_users\order_history_list.html:17
+#: .\templates\app_users\order_history_list.html:22
+#: .\templates\app_users\order_history_list.html:46
+#: .\templates\app_users\profile.html:39
+#: .\templates\app_users\user_order_detail.html:21
+#: .\templates\app_users\view_history_products.html:49
+msgid "История заказов"
+msgstr "Order history"
+
+#: .\templates\app_users\account.html:42 .\templates\app_users\account.html:114
+#: .\templates\app_users\order_history_list.html:49
+#: .\templates\app_users\profile.html:43
+#: .\templates\app_users\view_history_products.html:6
+#: .\templates\app_users\view_history_products.html:15
+#: .\templates\app_users\view_history_products.html:20
+#: .\templates\app_users\view_history_products.html:54
+msgid "История просмотров"
+msgstr "Histories view"
+
+#: .\templates\app_users\account.html:62
+msgid "Редактировать профиль"
+msgstr "Change profile"
+
+#: .\templates\app_users\account.html:166
+msgid "Полный список"
+msgstr "Full list"
+
+#: .\templates\app_users\login.html:7
+msgid "Авторизация"
+msgstr "Authorization"
+
+#: .\templates\app_users\login.html:12 .\templates\include\header.html:42
+msgid "Войти"
+msgstr "Sign in"
+
+#: .\templates\app_users\login.html:13
+msgid "Забыли пароль?"
+msgstr "Forgot password?"
+
+#: .\templates\app_users\login.html:13
+msgid "Отправить на email"
+msgstr "Send to email"
+
+#: .\templates\app_users\order_history_list.html:64
+#, fuzzy
+#| msgid "От"
+msgid "от"
+msgstr "From"
+
+#: .\templates\app_users\order_history_list.html:76
+#, fuzzy
+#| msgid "Оплата"
+msgid "оплата"
+msgstr "Payment"
+
+#: .\templates\app_users\password_change.html:6
+msgid "Смена пароля"
+msgstr "Change password"
+
+#: .\templates\app_users\password_change.html:10
+#, fuzzy
+#| msgid "Неверный пароль"
+msgid "Старый пароль"
+msgstr "Old password"
+
+#: .\templates\app_users\password_change.html:12
+#, fuzzy
+#| msgid "Неверный пароль"
+msgid "Новые пароль"
+msgstr "New password"
+
+#: .\templates\app_users\password_change.html:14
+#, fuzzy
+#| msgid "Пароль еще раз"
+msgid "Новый пароль еще раз"
+msgstr "Password again"
+
+#: .\templates\app_users\password_change.html:23
+#, fuzzy
+#| msgid "Отправить"
+msgid "Обновить"
+msgstr "Update"
+
+#: .\templates\app_users\password_change_done.html:7
+#: .\templates\app_users\password_reset_complete.html:8
+#: .\templates\app_users\profile.html:125
+msgid "Пароль успешно обновлен"
+msgstr "Password successful update"
+
+#: .\templates\app_users\password_reset_complete.html:8
+msgid "войти"
+msgstr "sign in"
+
+#: .\templates\app_users\password_reset_done.html:9
+msgid ""
+"Мы отправили вам по электронной почте инструкции по установке вашего пароля, "
+"если существует учетная запись с указанным вами адресом электронной почты. "
+"Вы должны получить их в ближайшее время."
+msgstr ""
+"We have emailed you instructions on how to set your password, if there is an "
+"account with the email address you provided.You should get them soon."
+
+#: .\templates\app_users\password_reset_done.html:12
+msgid ""
+"Если вы не получили электронное письмо, пожалуйста, убедитесь, что вы ввели "
+"адрес, зарегистрировались и проверили папку со спамом."
+msgstr ""
+"If you have not received an email, please make sure that you have entered "
+"the  address, registered and checked the spam folder."
+
+#: .\templates\app_users\password_reset_form.html:12
+
+msgid "Изменить пароль"
+msgstr "Change password"
+
+#: .\templates\app_users\profile.html:65
+msgid "Выбрать аватар"
+msgstr "Choose avatar"
+
+#: .\templates\app_users\profile.html:74
+#: .\templates\app_users\user_order_detail.html:46
+msgid "Инициалы"
+msgstr "Initials"
+
+#: .\templates\app_users\profile.html:112
+msgid "Подтвердить пароль"
+msgstr "Confirm password"
+
+#: .\templates\app_users\profile.html:116
+#, fuzzy
+#| msgid "Введите целое число"
+msgid "Введите пароль повторно"
+msgstr "Enter password again"
+
+#: .\templates\app_users\profile.html:121
+#, fuzzy
+#| msgid "Применить"
+msgid "Сохранить"
+msgstr "Apply"
+
+
+#: .\templates\app_users\registration.html:13
+#: .\templates\include\header.html:43
+msgid "Регистрация"
+msgstr "Registration"
+
+#: .\templates\app_users\registration.html:18
+#, fuzzy
+#| msgid "Я уже зарегистрирован"
+msgid "Зарегистрироваться"
+msgstr "Sign up"
+
+#: .\templates\app_users\user_order_detail.html:6
+#, fuzzy
+#| msgid "Сумма заказа"
+msgid "Номер заказа"
+msgstr "Order"
+
+#: .\templates\app_users\user_order_detail.html:40
+msgid "Дата заказа"
+msgstr "Order date"
+
+#: .\templates\app_users\user_order_detail.html:141
+#, fuzzy
+#| msgid "Оплата"
+msgid "К оплате"
+msgstr "Payment"
+
+#: .\templates\include\footer.html:10
+msgid ""
+"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy "
+"nibh euismod tincid  unt ut laoreet dolore magna aliquam erat volutpat. Ut "
+"wisi enim ad"
+msgstr ""
+
+#: .\templates\include\footer.html:26
+msgid "Полезные ссылки"
+msgstr "Useful links"
+
+#: .\templates\include\footer.html:29
+#, fuzzy
+#| msgid "Корзина"
+msgid "Моя корзина"
+msgstr "Cart"
+
+#: .\templates\include\footer.html:55
+msgid "Phone"
+msgstr "Телефон"
+
+#: .\templates\include\footer.html:63
+msgid "Megano store"
+msgstr ""
+
+#: .\templates\include\footer.html:63
+msgid "All rights reserved"
+msgstr ""
+
+#: .\templates\include\footer.html:65
+msgid "Прием платежей"
+msgstr "Payments"
+
+#: .\templates\include\header.html:10
+msgid "Бесплатная доставка"
+msgstr "Free delivery"
+
+#: .\templates\include\header.html:39
+msgid "Выйти"
+msgstr "Out"
+
+#: .\templates\include\header.html:118
+msgid "Поиск"
+msgstr "Search"

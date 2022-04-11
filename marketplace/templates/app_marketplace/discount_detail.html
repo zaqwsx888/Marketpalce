@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block content %}
+
+<div class="Middle Middle_top">
+    <div class="Middle-top">
+        <div class="wrap">
+            <div class="Middle-header">
+                <h1 class="Middle-title">{{ title }}</h1>
+                <ul class="breadcrumbs Middle-breadcrumbs">
+                    <li class="breadcrumbs-item"><a href="{% url 'main' %}">{% trans "Главная" %}</a></li>
+                    <li class="breadcrumbs-item breadcrumbs-item_current"><span>{% trans "Скидка" %}</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="Section">
+        <div class="wrap">
+            <div class="Product">
+                <div class="ProductCard">
+                    <div class="ProductCard-look">
+                        <div class="ProductCard-photo">
+                            <img src="{{ product.main_image.file.url }}" alt="{{ product.main_image.filename }}"/>
+                        </div>
+                    </div>
+                    <div class="ProductCard-desc">
+                        <div class="ProductCard-header">
+                            <h2 class="ProductCard-title">{{ discount.name }}</h2>
+                        </div>
+                        <div class="ProductCard-text">
+                            <p>{{ discount.description }}</p>
+                            {% if discount.date_start %}
+                                <p>{% trans "С" %}: {{ discount.date_start }}</p>
+                            {% endif %}
+                            <p>{% trans "По" %}: {{ discount.date_end }}</p>
+                            {% if discount.percent_discount %}
+                                <p>{% trans "Скидка" %} {{ discount.percent_discount }} % {% trans "От" %}</p>
+                            {% else %}
+                                <p>{% trans "От" %}{{ discount.value_discount }} {% trans "руб" %}.</p>
+                            {% endif %}
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

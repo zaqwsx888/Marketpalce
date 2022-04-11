@@ -1,0 +1,228 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% load template_filters %}
+{% block content %}
+
+<div class="Middle Middle_top" xmlns="http://www.w3.org/1999/html">
+    <div class="Middle-top">
+        <div class="wrap">
+            <div class="Middle-header">
+                <h1 class="Middle-title">{% trans "Сравнение товаров" %}</h1>
+                <ul class="breadcrumbs Middle-breadcrumbs">
+                    <li class="breadcrumbs-item"><a href="{% url 'main' %}">{% trans "Главная" %}</a></li>
+                    <li class="breadcrumbs-item breadcrumbs-item_current"><span>{% trans "Сравнение товаров" %}</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="Section">
+        <div class="wrap">
+
+            {% if not_enough_goods %} <!--Если товары отсутствуют или только один товар-->
+                <div class="Compare">
+
+                    <p class="Compare-none">{% trans "Нет товаров для сравнения" %}</p>
+
+                    {% if compare_list %}
+
+                        <div class="Compare-row">
+                            <div class="Compare-title Compare-title_blank"></div>
+                            <div class="Compare-products">
+                                {% for product, _ in compare_list %}
+                                    <div class="Compare-product">
+                                        <div class="Compare-nameProduct Compare-nameProduct_main"><a href="{% url 'good_details' slug=product.slug %}">{{ product.model|title }}</a></div>
+                                        <div class="Compare-feature"><img class="Compare-pict" src="{{ product.main_image.file.url }}" alt="{{ product.main_image.filename }}"/></div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="Compare-row">
+                            <div class="Compare-title Compare-title_blank"></div>
+                            <div class="Compare-products">
+                                {% for product, product_on_shop_id in compare_list %}
+                                    <div class="Compare-product">
+
+                                        <div class="Compare-nameProduct">{{ product.model|title }}</div>
+                                        <div class="Compare-feature">
+                                            <button class="Compare-btn add_product_to_cart" shop_product_id="{{ product_on_shop_id }}">
+                                                <img src="{% static 'img/icons/card/cart.svg' %}" alt="cart.svg"/>
+                                            </button>
+                                            <form method="post">
+                                                {% csrf_token %}
+                                                <button class="Compare-btn" name="del_compare_item" value="{{ product.slug }}">
+                                                    <img src="{% static 'img/icons/card/delete.svg' %}" alt="delete.svg"/>
+                                                </button>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+            {% else %}
+
+                {% if not incomparable_goods %} <!--Если товаров больше одного и сравниваемые товары одной категории-->
+
+                    <div class="Compare">
+
+                        <div class="Compare-header">
+                            <label class="toggle Compare-checkDifferent">
+                                <input type="checkbox" id="checkbox_check" name="differentFeature" value="true" checked="checked"/><span class="toggle-box"></span><span class="toggle-text">{% trans "Только различающиеся характеристики" %}</span>
+                            </label>
+                        </div>
+
+                        <div class="Compare-row">
+                            <div class="Compare-title Compare-title_blank"></div>
+                            <div class="Compare-products">
+                                {% for _, _, product, _ in compare_list %}
+                                    <div class="Compare-product">
+                                        <div class="Compare-nameProduct Compare-nameProduct_main"><a href="{% url 'good_details' slug=product.slug %}">{{ product.model|title }}</a></div>
+                                        <div class="Compare-feature"><img class="Compare-pict" src="{{ product.main_image.file.url }}" alt="{{ product.main_image.filename }}"/></div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="Compare-row">
+                            <div class="Compare-title Compare-title_blank"></div>
+                            <div class="Compare-products">
+                                {% for _, _, product, product_on_shop_id in compare_list %}
+                                    <div class="Compare-product">
+                                        <div class="Compare-nameProduct">{{ product.model|title }}</div>
+                                        <div class="Compare-feature">
+                                            <button class="Compare-btn add_product_to_cart" shop_product_id="{{ product_on_shop_id }}">
+                                                <img src="{% static 'img/icons/card/cart.svg' %}" alt="cart.svg"/>
+                                            </button>
+                                            <form method="post">
+                                                {% csrf_token %}
+                                                <button class="Compare-btn" name="del_compare_item" value="{{ product.slug }}">
+                                                    <img src="{% static 'img/icons/card/delete.svg' %}" alt="delete.svg"/>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div id="diff_parameters">
+                            {% for characteristic, values in characteristics.items %}
+                                <div class="Compare-row">
+                                    <div class="Compare-title">{{ characteristic }}</div>
+                                    {% for _, _, product, _ in compare_list %}
+                                        <div class="Compare-products">
+                                            <div class="Compare-product">
+                                                <div class="Compare-nameProduct">{{ product }}</div>
+
+                                                {% if product.slug in values.keys %}
+                                                    <div class="Compare-feature">{{ values|get_item:product.slug }}</div>
+                                                {% else %}
+                                                    <div class="Compare-feature">-</div>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="Compare-row">
+                            <div class="Compare-title">Цена</div>
+                            <div class="Compare-products">
+                                {% for discount_price, product_price, product, _ in compare_list %}
+                                    <div class="Compare-product">
+                                        <div class="Compare-nameProduct">{{ product.model }}</div>
+                                        <div class="Compare-feature">
+                                            {% if discount_price %}
+                                                <strong class="Compare-priceOld">₽&#32;{{ product_price }}</strong>
+                                                <strong class="Compare-price">₽&#32;{{ discount_price }}</strong>
+                                            {% else %}
+                                                <strong class="Compare-price">₽&#32;{{ product_price }}</strong>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                    </div>
+
+                {% else %} <!--Если товаров больше одного, но сравниваемые товары разной категории-->
+
+                    <div class="Compare">
+
+                        <article class="Article" style="text-align: center">
+                            <p>{{ messages.0 }}</p>
+                            <p>{{ messages.1 }}</p>
+                        </article>
+
+                        <div class="Compare-row">
+                            <div class="Compare-title Compare-title_blank"></div>
+                            <div class="Compare-products">
+                                {% for discount_price, product_price, product, _ in compare_list %}
+                                    <div class="Compare-product">
+                                        <div class="Compare-nameProduct Compare-nameProduct_main"><a href="{% url 'good_details' slug=product.slug %}">{{ product.model|title }}</a></div>
+                                        <div class="Compare-feature"><img class="Compare-pict" src="{{ product.main_image.file.url }}" alt="{{ product.main_image.filename }}"/></div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="Compare-row">
+                            <div class="Compare-title Compare-title_blank"></div>
+                            <div class="Compare-products">
+                                {% for _, _, product, product_on_shop_id in compare_list %}
+                                    <div class="Compare-product">
+                                        <div class="Compare-nameProduct">{{ product.model|title }}</div>
+                                        <div class="Compare-feature">
+                                            <button class="Compare-btn add_product_to_cart" shop_product_id="{{ product_on_shop_id }}">
+                                                <img src="{% static 'img/icons/card/cart.svg' %}" alt="cart.svg"/>
+                                            </button>
+                                            <form method="post">
+                                                {% csrf_token %}
+                                                <button class="Compare-btn" name="del_compare_item" value="{{ product.slug }}">
+                                                    <img src="{% static 'img/icons/card/delete.svg' %}" alt="delete.svg"/>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="Compare-row">
+                            <div class="Compare-title">Цена</div>
+                            <div class="Compare-products">
+                                {% for discount_price, product_price, product, _ in compare_list %}
+                                    <div class="Compare-product">
+                                        <div class="Compare-nameProduct">{{ product.model }}</div>
+                                        <div class="Compare-feature">
+                                            {% if discount_price %}
+                                                <strong class="Compare-priceOld">₽&#32;{{ product_price }}</strong>
+                                                <strong class="Compare-price">₽&#32;{{ discount_price }}</strong>
+                                            {% else %}
+                                                <strong class="Compare-price">₽&#32;{{ product_price }}</strong>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                    </div>
+
+                {% endif %}
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

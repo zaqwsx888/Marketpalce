@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+{% load i18n %}
+{% load static %}
+<html lang="en">
+<head>
+    <title>{{category.name}}</title>
+    {% include 'include/head.html' %}
+</head>
+<body class="Site">
+{% include 'include/header.html' %}
+<div class="Middle Middle_top">
+    <div class="Middle-top">
+      <div class="wrap">
+        <div class="Middle-header">
+          <h1 class="Middle-title">{% trans "Оформление заказа" %}
+          </h1>
+          <ul class="breadcrumbs Middle-breadcrumbs">
+            <li class="breadcrumbs-item"><a href="index.html">{% trans "Главная" %}</a>
+            </li>
+            <li class="breadcrumbs-item breadcrumbs-item_current"><span>{% trans "Оформление заказа" %}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="Section Section_column Section_columnRight Section_columnWide Order">
+      <div class="wrap">
+        <div class="Section-column">
+          <div class="Section-columnSection">
+            <header class="Section-header">
+              <strong class="Section-title">{% trans "Процесс оформления" %}
+              </strong>
+            </header>
+            <div class="Section-columnContent">
+              <ul class="menu menu_vt Order-navigate">
+                <li class="link-order-user">
+                  <a href="{%url 'user_order'%}">{% trans "Шаг" %} 1. {% trans "Параметры пользователя" %}</a>
+                </li>
+                <li class="menu-item_ACTIVE menu-item"><a class="menu-link" href="#step2">{% trans "Шаг" %} 2. {% trans "Тип доставки" %}</a>
+                </li>
+                <li class="menu-item"><a class="menu-link" href="#step3">{% trans "Шаг" %} 3. {% trans "Тип платежа" %}</a>
+                </li>
+                <li class="menu-item"><a class="menu-link" href="#step4">{% trans "Шаг" %} 4. {% trans "Потдверждение заказа" %}</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="Section-content">
+          <form class="form" action="" method="post">
+            <div class="Order-block Order-block_OPEN">
+              <header class="Section-header Section-header_sm">
+                <h2 class="Section-title">{% trans "Шаг" %} 2. {% trans "Тип доставки" %}
+                </h2>
+              </header>
+              {% csrf_token %}
+              <div class="form-group">
+                <div>
+                  {{form.delivery_for_order}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="row-block">
+              <div class="form-field">
+                {{form.country.errors}}
+                <label class="form-label" for="{{form.country.name}}">{{form.country.label}}
+                </label>
+                <input class="form-input" id="{{form.country.name}}" name="{{form.country.name}}" value="{%if order%}{{order.country}}{%endif%}" type="text"/>
+              </div>
+              <div class="form-field">
+                {{form.locality.errors}}
+                <label class="form-label" for="{{form.locality.name}}">{{form.locality.label}}
+                </label>
+                <input class="form-input" id="{{form.locality.name}}" name="{{form.locality.name}}" value="{%if order%}{{order.locality}}{%endif%}"  type="text"/>
+              </div>
+              <div class="form-field">
+                {{form.street.errors}}
+                <label class="form-label" for="{{form.street.name}}">{{form.street.label}}
+                </label>
+                <input class="form-input" id="{{form.street.name}}" name="{{form.street.name}}" value="{%if order%}{{order.street}}{%endif%}" type="text"/>
+              </div>
+              <div class="form-field">
+                {{form.house.errors}}
+                <label class="form-label" for="{{form.house.name}}">{{form.house.label}}
+                </label>
+                <input class="form-input" id="{{form.house.name}}" name="{{form.house.name}}" value="{%if order%}{{order.house}}{%endif%}" type="text"/>
+              </div>
+              </div>
+              </div>
+
+              <div class="row">
+                <div class="row-block">
+              <div class="form-field">
+                {{form.entrance.errors}}
+                <label class="form-label" for="{{form.entrance.name}}">{{form.entrance.label}}
+                </label>
+                <input class="form-input" id="{{form.entrance.name}}" name="{{form.entrance.name}}" value="{%if order%}{{order.entrance}}{%endif%}" type="text"/>
+              </div>
+              <div class="form-field">
+                <label class="form-label" for="{{form.floor.name}}">{{form.floor.label}}
+                </label>
+                <input class="form-input" id="{{form.floor.name}}" name="{{form.floor.name}}" value="{%if order%}{{order.floor}}{%endif%}" type="text"/>
+              </div>
+              <div class="form-field">
+                {{form.apartment.errors}}
+                <label class="form-label" for="{{form.apartment.name}}">{{form.apartment.label}}
+                </label>
+                <input class="form-input" id="{{form.apartment.name}}" name="{{form.apartment.name}}" value="{%if order%}{{order.apartment}}{%endif%}" type="text"/>
+              </div>
+              </div>
+              </div>
+              <div class="row-block">
+              <div class="form-field"></div>
+              <div class="form-field"><input class="btn login-btn btn-order" type="submit" value="{% trans 'Дальше' %}">
+              </div>
+              </div>
+              </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% include 'include/footer.html' %}
+</body>
+</html>

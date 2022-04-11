@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+{% load i18n %}
+{% load static %}
+<html lang="en">
+<head>
+    <title>{% trans "Корзина" %}</title>
+    {% include 'include/head.html' %}
+</head>
+<body class="Site">
+{% include 'include/header.html' %}
+<div class="Middle Middle_top">
+    <div class="Middle-top">
+        <div class="wrap">
+            <div class="Middle-header">
+                <h1 class="Middle-title">{% trans "Корзина" %}
+                </h1>
+                <ul class="breadcrumbs Middle-breadcrumbs">
+                    <li class="breadcrumbs-item"><a href="index.html">{% trans "Главная" %}</a>
+                    </li>
+                    <li class="breadcrumbs-item breadcrumbs-item_current"><span>{% trans "Корзина" %}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="Section">
+        <div class="wrap">
+            {% if products_in_cart|length == 0 %}
+                <p class="Compare-none">{% trans "Корзина пуста" %}.</p>
+            {% else %}
+            {% for product in products_in_cart %}
+
+            <form class="form Cart" method="post">
+                <div class="Cart-product">
+                    <div class="Cart-block Cart-block_row">
+                        <div class="Cart-block Cart-block_pict"><a class="Cart-pict" href="#"><img class="Cart-img"
+                                                                                                   src="{{ product.product.product.main_image.file.url }}"
+                                                                                                   alt="{{ product.product.product.filename }}"/></a>
+                        </div>
+                        <div class="Cart-block Cart-block_info"><a class="Cart-title" href="{% url 'good_details' slug=product.product.product.slug %}">{{product.product.product.model}}</a>
+                            <div class="Cart-desc">{{product.product.product.description}}
+                            </div>
+
+                        </div>
+                        <div class="Cart-block Cart-block_price">
+                            <div class="Cart-price">{{product.product.price}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="Cart-block Cart-block_row">
+                        <div class="Cart-block Cart-block_seller">
+                            <!-- - var options = setOptions(items, ['value', 'selected', 'disabled']);-->
+                            <div class="Cart-block_info">
+                                {{ product.product.shop.name }}
+
+                            </div>
+                        </div>
+                        <div class="Cart-block Cart-block_amount">
+                            <div class="Cart-amount">
+                                <div class="Amount" shop_product_id="{{  product.product.id }}" href="{% url 'change_cart_product' %}">
+                                    <button class="Amount-remove" shop_product_id="{{  product.product.id }}" type="button">
+                                    </button>
+                                    <input class="Amount-input form-input" shop_product_id="{{  product.product.id }}" name="amount" type="text" value="{{product.quantity}}" disabled/>
+                                    <button class="Amount-add" type="button">
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="error" shop_product_id="{{  product.product.id }}" style="color: #df3349"></div>
+                        </div>
+                        <div class="Cart-block Cart-block_delete">
+                            <form method="post">
+                                {% csrf_token %}
+                                <button class="Cart-delete" name="productDelete" value="{{ product.product.id }}"><img src="{% static 'img/icons/card/delete.svg' %}" alt="delete.svg"/></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+            </form>
+            {% endfor %}
+            <div class="Cart-total">
+                    <div class="Cart-block Cart-block_total">
+                        <strong class="Cart-title">{% trans "Итого" %}:
+                        </strong><span class="Cart-price" id="total_price_cart">{{total_price_cart}}{% trans "руб" %}.</span>
+<!--                        <span class="Cart-price_old">{{total_price_cart}}руб.</span>-->
+                    </div>
+                    <div class="Cart-block"><a class="btn btn_success btn_lg" href="{% url 'user_order' %}">{% trans "Оформить заказ" %}</a>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% include 'include/footer.html' %}
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="{% static 'js/cart.js' %}"></script>
+</html>

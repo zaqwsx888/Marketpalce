@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% load cache %}
+{% block content %}
+
+
+
+ <h2 style="text-align: center;">{% trans "Найденные товары:" %}</h2>
+ <div class="">
+  {% for product in object_list %}
+
+  <a class="" href="{% url 'good_details' product.slug %}">
+    <div class="Product">
+        
+        <div class="Product">
+            <img width="150" height="150" src="{{MEDIA_URL}}{{product.main_image.file.url}}">
+        </div>
+        <div class="Product">
+             {{ product.model }}
+        </div>
+        
+    </div>
+    </a> 
+
+
+
+  {% endfor %}
+</div>
+{% endblock %}

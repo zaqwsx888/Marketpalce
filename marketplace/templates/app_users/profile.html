@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+{% load static %}
+{% load filters %}
+<script src="{% static 'js/phoneinput.js' %}"></script>
+<div class="Middle Middle_top">
+    <div class="Middle-top">
+        <div class="wrap">
+            <div class="Middle-header">
+                <h1 class="Middle-title">{% trans "Профиль" %}
+                </h1>
+                <ul class="breadcrumbs Middle-breadcrumbs">
+                    <li class="breadcrumbs-item"><a href="/">{% trans "Главная" %}</a>
+                    </li>
+                    <li class="breadcrumbs-item breadcrumbs-item_current"><span>{% trans "Профиль" %}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="Section Section_column Section_columnLeft">
+        <div class="wrap">
+            <div class="Section-column">
+                <div class="Section-columnSection">
+                    <header class="Section-header">
+                        <strong class="Section-title">{% trans "Меню" %}
+                        </strong>
+                    </header>
+                    <div class="Section-columnContent">
+                        <div class="NavigateProfile">
+                            <ul class="menu menu_vt">
+                                <li class="menu-item"><a class="menu-link"
+                                                         href="{% url 'account' slug=request.user.slug %}">{% trans "Личный кабинет" %}</a>
+                                </li>
+                                <li class="menu-item_ACTIVE menu-item"><a class="menu-link"
+                                                                          href="{% url 'account_update' slug=request.user.slug %}">{% trans "Профиль" %}</a>
+                                </li>
+                                <li class="menu-item"><a class="menu-link" href="{% url 'history_orders' slug=request.user.slug%}">{% trans "История заказов" %}</a>
+                                </li>
+                                <li class="menu-item">
+                                    <a class="menu-link" href="{% url 'history_products' slug=request.user.slug %}">
+                                        {% trans "История просмотров" %}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="Section-content">
+                <div class="Profile">
+                    <form class="form Profile-form" action="{% url 'account_update' slug=request.user.slug %}"
+                          method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <label class="form-label" for="avatar">{% trans "Аватар" %}
+                                    </label>
+                                    <div class="Profile-avatar Profile-avatar_noimg">
+                                        <div class="Profile-img"><img src="/media/{{request.user.avatar}}"
+                                                                      alt="avatar"/>
+                                        </div>
+                                        <label class="Profile-fileLabel" for="avatar">{% trans "Выбрать аватар" %}</label>
+                                        <input class="Profile-file form-input" id="avatar" name="avatar" type="file"
+                                               data-validate="onlyImgAvatar"/>
+
+                                    </div>
+
+                                    <p style="color: #df3349">{{errors|get_avatar_message}}</p>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="fio">{% trans "Инициалы" %}
+                                    </label>
+                                    {% if request.user.last_name|length == 0 and request.user.first_name|length == 0 %}
+                                    <input class="form-input" id="fio" name="fio" type="text"
+                                           value=""
+                                           data-validate="require"/>
+                                    {% else %}
+                                    <input class="form-input" id="fio" name="fio" type="text"
+                                           value="{{request.user.first_name}} {{request.user.last_name}}"
+                                           data-validate="require"/>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label class="form-label" for="phone">{% trans "Телефон" %}
+                                    </label>
+                                    <input class="form-input" id="phone" name="phone" type="tel" data-tel-input
+                                           maxlength="18"
+                                           value="{{ request.user.phone_number }}"/>
+                                    <p style="color: #df3349">{{errors|get_phone_message}}</p>
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="email">E-mail
+                                    </label>
+                                    <input class="form-input" id="email" name="email" type="email"
+                                           value="{{ request.user.email }}"
+                                           data-validate="require"/>
+                                    <p style="color: #df3349">{{errors|get_email_message}}</p>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="password">{% trans "Пароль" %}
+                                    </label>
+                                    <input class="form-input" id="password" name="password" type="password"
+                                           placeholder="Тут можно изменить пароль"/>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="confirm_password">{% trans "Подтвердить пароль" %}
+                                    </label>
+                                    <input class="form-input" id="confirm_password" name="confirm_password"
+                                           type="password"
+                                           placeholder="{% trans "Введите пароль повторно" %}"/>
+                                    <p style="color: #df3349">{{errors|get_password_message}}</p>
+                                </div>
+                                <div class="form-group">
+                                    <div class="Profile-btn">
+                                        <button class="btn btn_success" type="submit">{% trans "Сохранить" %}
+                                        </button>
+                                    </div>
+                                    {% if errors|length == 0 %}
+                                    <div class="Profile-success">{% trans "Пароль успешно обновлен" %}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

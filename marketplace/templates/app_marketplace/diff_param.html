@@ -1,0 +1,22 @@
+{% load template_filters %}
+
+<div id="diff_parameters">
+    {% for characteristic, values in characteristics.items %}
+        <div class="Compare-row">
+            <div class="Compare-title">{{ characteristic }}</div>
+            {% for _, _, product, _ in compare_list %}
+                <div class="Compare-products">
+                    <div class="Compare-product">
+                        <div class="Compare-nameProduct">{{ product }}</div>
+
+                        {% if product.slug in values.keys %}
+                            <div class="Compare-feature">{{ values|get_item:product.slug }}</div>
+                        {% else %}
+                            <div class="Compare-feature">-</div>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+</div>
